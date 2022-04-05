@@ -5,9 +5,14 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:medicalreminder/app/app.dart';
 import 'package:medicalreminder/bootstrap.dart';
 
 void main() {
-  bootstrap(() => const App());
+  bootstrap(
+    () => App(
+      authenticationRepository: AuthenticationRepository(),
+    ),
+  );
 }

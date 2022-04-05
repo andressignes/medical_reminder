@@ -5,29 +5,51 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
+import 'package:authentication_repository/authentication_repository.dart';
+import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:medicalreminder/counter/counter.dart';
+import 'package:medicalreminder/app/app.dart';
 import 'package:medicalreminder/l10n/l10n.dart';
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  const App({
+    Key? key,
+    required this.authenticationRepository,
+  }) : super(key: key);
+
+  final AuthenticationRepository authenticationRepository;
+
+  @override
+  Widget build(BuildContext context) {
+    return RepositoryProvider<AuthenticationRepository>(
+      create: (context) => AuthenticationRepository(),
+      child: BlocProvider<AppBloc>(
+        create: (context) => AppBloc(
+          authenticationRepository: context.read<AuthenticationRepository>(),
+        ),
+        child: const AppView(),
+      ),
+    );
+  }
+}
+
+class AppView extends StatelessWidget {
+  const AppView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
-        colorScheme: ColorScheme.fromSwatch(
-          accentColor: const Color(0xFF13B9FF),
-        ),
-      ),
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const CounterPage(),
+      home: FlowBuilder<AppStatus>(
+        state: context.select((AppBloc bloc) => bloc.state.status),
+        onGeneratePages: onGenerateAppViewPages,
+      ),
     );
   }
 }

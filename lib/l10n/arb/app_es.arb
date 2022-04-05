@@ -1,7 +1,39 @@
 {
-    "@@locale": "es",
-    "counterAppBarTitle": "Contador",
-    "@counterAppBarTitle": {
-        "description": "Texto mostrado en la AppBar de la página del contador"
-    }
+  "@@locale": "es",
+  "counterAppBarTitle": "Contador",
+  "@counterAppBarTitle": {
+    "description": "Texto mostrado en la AppBar de la página del contador"
+  },
+  "loginPageTitle": "Iniciar sesion",
+  "@loginPageTitle": {
+    "description": "Título de la página de inicio de sesión"
+  },
+  "createAccountPageTitle": "Crear cuenta",
+  "@createAccountPageTitle": {
+    "description": "Título de la página de creación de cuenta"
+  },
+  "emailFieldLabel": "Correo electrónico",
+  "@emailFieldLabel": {
+    "description": "Etiqueta del campo de correo electrónico"
+  },
+  "passwordFieldLabel": "Contraseña",
+  "@passwordFieldLabel": {
+    "description": "Etiqueta del campo de contraseña"
+  },
+  "emailInvalid": "Correo electrónico inválido",
+  "@emailInvalid": {
+    "description": "Mensaje de error para correo electrónico inválido"
+  },
+  "passwordInvalid": "Contraseña inválida",
+  "@passwordInvalid": {
+    "description": "Mensaje de error para contraseña inválida"
+  },
+  "confirmPasswordFieldLabel": "Confirmar contraseña",
+  "@confirmPasswordFieldLabel": {
+    "description": "Etiqueta del campo de confirmación de contraseña"
+  },
+  "confirmPasswordInvalid": "Las contraseñas no coinciden",
+  "@confirmPasswordInvalid": {
+    "description": "Mensaje de error para contraseñas no coincidentes"
+  }
 }
