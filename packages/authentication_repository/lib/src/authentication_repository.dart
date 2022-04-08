@@ -81,6 +81,19 @@ class AuthenticationRepository {
     }
   }
 
+  /// Forgot password with the provided [email].
+  ///
+  /// Throws a [ForgotPasswordFailure] if an exception occurs.
+  Future<void> forgotPassword({required String email}) async {
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      throw ForgotPasswordFailure.fromCode(e.code);
+    } catch (e) {
+      throw const ForgotPasswordFailure();
+    }
+  }
+
   /// Signs out the current user which will emit
   /// [User.empty] from the [user] Stream.
   ///

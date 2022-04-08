@@ -8,6 +8,10 @@
   "@loginPageTitle": {
     "description": "Título de la página de inicio de sesión"
   },
+  "forgotPasswordTitle": "Recupear contraseña",
+  "@forgotPasswordTitle": {
+    "description": "Título de la página de recuperación de contraseña"
+  },
   "createAccountPageTitle": "Crear cuenta",
   "@createAccountPageTitle": {
     "description": "Título de la página de creación de cuenta"
@@ -35,5 +39,9 @@
   "confirmPasswordInvalid": "Las contraseñas no coinciden",
   "@confirmPasswordInvalid": {
     "description": "Mensaje de error para contraseñas no coincidentes"
+  },
+  "forgotPasswordButton": "¿Olvidaste tu contraseña?",
+  "@forgotPasswordButton": {
+    "description": "Texto del botón de olvidar contraseña"
   }
 }
