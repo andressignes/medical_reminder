@@ -13,12 +13,18 @@ class ForgotPasswordForm extends StatelessWidget {
     return BlocListener<ForgotPasswordCubit, ForgotPasswordState>(
       listener: _forgotPasswordListener,
       child: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            const EmailInput(),
-            SizedBox(height: size.height * 0.01),
-            const ForgotPasswordSubmitButton(),
-          ],
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: size.width * 0.1,
+            vertical: size.height * 0.1,
+          ),
+          child: Column(
+            children: <Widget>[
+              const EmailInput(),
+              SizedBox(height: size.height * 0.01),
+              const ForgotPasswordSubmitButton(),
+            ],
+          ),
         ),
       ),
     );

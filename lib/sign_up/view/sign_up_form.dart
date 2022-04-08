@@ -12,16 +12,22 @@ class SignUpForm extends StatelessWidget {
     return BlocListener<SignUpCubit, SignUpState>(
       listener: _signUpListener,
       child: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            const EmailInput(),
-            SizedBox(height: size.height * 0.01),
-            const PasswordInput(),
-            SizedBox(height: size.height * 0.01),
-            const ConfirmPasswordInput(),
-            SizedBox(height: size.height * 0.01),
-            const SingUpButton(),
-          ],
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: size.width * 0.1,
+            vertical: size.height * 0.1,
+          ),
+          child: Column(
+            children: <Widget>[
+              const EmailInput(),
+              SizedBox(height: size.height * 0.01),
+              const PasswordInput(),
+              SizedBox(height: size.height * 0.01),
+              const ConfirmPasswordInput(),
+              SizedBox(height: size.height * 0.01),
+              const SingUpButton(),
+            ],
+          ),
         ),
       ),
     );

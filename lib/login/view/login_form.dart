@@ -12,18 +12,24 @@ class LoginForm extends StatelessWidget {
     return BlocListener<LoginCubit, LoginState>(
       listener: _loginListener,
       child: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            const EmailInput(),
-            SizedBox(height: size.height * 0.01),
-            const PasswordInput(),
-            SizedBox(height: size.height * 0.01),
-            const LoginButton(),
-            SizedBox(height: size.height * 0.01),
-            const CreateAccountButton(),
-            SizedBox(height: size.height * 0.01),
-            const ForgotPasswordButton(),
-          ],
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: size.width * 0.1,
+            vertical: size.height * 0.1,
+          ),
+          child: Column(
+            children: <Widget>[
+              const EmailInput(),
+              SizedBox(height: size.height * 0.01),
+              const PasswordInput(),
+              SizedBox(height: size.height * 0.01),
+              const LoginButton(),
+              SizedBox(height: size.height * 0.01),
+              const CreateAccountButton(),
+              SizedBox(height: size.height * 0.01),
+              const ForgotPasswordButton(),
+            ],
+          ),
         ),
       ),
     );
