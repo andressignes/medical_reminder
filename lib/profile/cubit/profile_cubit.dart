@@ -24,6 +24,26 @@ class ProfileCubit extends Cubit<ProfileState> {
     );
   }
 
+  void birthDateChanged(BirthDate birthDate) {
+    emit(
+      state.copyWith(
+        birthDate: birthDate,
+        status: Formz.validate([
+          birthDate,
+        ]),
+      ),
+    );
+  }
+
+  void genderChanged(Gender gender) {
+    emit(
+      state.copyWith(
+        gender: gender,
+        status: FormzStatus.valid,
+      ),
+    );
+  }
+
   Future<void> save() async {
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     try {
@@ -31,6 +51,8 @@ class ProfileCubit extends Cubit<ProfileState> {
       await _authenticationRepository.updateUserAttributes(
         currentUser.copyWith(
           name: state.name.value,
+          birthDate: state.birthDate.value,
+          gender: state.gender,
         ),
       );
       emit(state.copyWith(status: FormzStatus.submissionSuccess));

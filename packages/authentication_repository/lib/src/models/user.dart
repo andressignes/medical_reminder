@@ -3,6 +3,18 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'user.g.dart';
 
+/// Gender of user
+enum Gender {
+  /// Enum value male.
+  male,
+
+  /// Enum value female.
+  female,
+
+  /// Enum value genderless.
+  genderless,
+}
+
 /// {@template user}
 /// User model
 ///
@@ -15,6 +27,8 @@ class User extends Equatable {
     required this.id,
     required this.email,
     this.name,
+    this.birthDate,
+    this.gender,
   });
 
   /// {@macro user}
@@ -32,8 +46,14 @@ class User extends Equatable {
   /// The current user's name (display name).
   final String? name;
 
+  /// The birth date of the current user.
+  final DateTime? birthDate;
+
+  /// Gender of current user.
+  final Gender? gender;
+
   @override
-  List<Object?> get props => [id, name, email];
+  List<Object?> get props => [id, name, email, birthDate, gender];
 
   /// Empty user which represents an unauthenticated user.
   static const empty = User(id: '', email: '');
@@ -48,10 +68,14 @@ class User extends Equatable {
     String? id,
     String? email,
     String? name,
+    DateTime? birthDate,
+    Gender? gender,
   }) =>
       User(
         id: id ?? this.id,
         email: email ?? this.email,
         name: name ?? this.name,
+        birthDate: birthDate ?? this.birthDate,
+        gender: gender ?? this.gender,
       );
 }
