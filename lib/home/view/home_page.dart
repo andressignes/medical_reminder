@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medicalreminder/app/bloc/app_bloc.dart';
+import 'package:medicalreminder/profile/view/profile_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,6 +17,13 @@ class HomePage extends StatelessWidget {
         title: const Text('Home'),
         actions: <Widget>[
           IconButton(
+            key: const Key('homePage_profile_iconButton'),
+            icon: const Icon(Icons.supervised_user_circle),
+            onPressed: () => Navigator.of(context).push<void>(
+              ProfilePage.route(),
+            ),
+          ),
+          IconButton(
             key: const Key('homePage_logout_iconButton'),
             icon: const Icon(Icons.exit_to_app),
             onPressed: () => context.read<AppBloc>().add(AppLogoutRequested()),
@@ -28,7 +36,7 @@ class HomePage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             const SizedBox(height: 4),
-            Text(user.email ?? '', style: textTheme.headline6),
+            Text(user.email, style: textTheme.headline6),
             const SizedBox(height: 4),
             Text(user.name ?? '', style: textTheme.headline5),
           ],

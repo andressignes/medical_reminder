@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:authentication_repository/src/data_source/user_data_source.dart';
 import 'package:authentication_repository/src/errors/exceptions/exceptions.dart';
 import 'package:authentication_repository/src/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
@@ -14,9 +15,12 @@ class AuthenticationRepository {
   /// {@macro authentication_repository}
   AuthenticationRepository({
     firebase_auth.FirebaseAuth? firebaseAuth,
-  }) : _firebaseAuth = firebaseAuth ?? firebase_auth.FirebaseAuth.instance;
+    UserDataSource? userDataSource,
+  })  : _firebaseAuth = firebaseAuth ?? firebase_auth.FirebaseAuth.instance,
+        _userDataSource = userDataSource ?? UserDataSource();
 
   final firebase_auth.FirebaseAuth _firebaseAuth;
+  final UserDataSource _userDataSource;
 
   /// Whether or not the current environment is web
   /// Should only be overriden for testing purposes. Otherwise,
@@ -40,10 +44,23 @@ class AuthenticationRepository {
     });
   }
 
+  Stream<User> get userAttributesStream {
+    return _userDataSource.getUser(currentUser.id);
+  }
+
   /// Returns the current cached user.
   /// Defaults to [User.empty] if there is no cached user.
   User get currentUser {
     return _firebaseAuth.currentUser?.toUser ?? User.empty;
+  }
+
+  /// Returns the complete data of current user.
+  /// Defaults to [User.empty] if there is no cached user.
+  Future<User> get userAttributes async {
+    if (_firebaseAuth.currentUser == null) {
+      return User.empty;
+    }
+    return _userDataSource.getCurrentUser(_firebaseAuth.currentUser!.toUser.id);
   }
 
   /// Creates a new user with the provided [email] and [password].
@@ -51,10 +68,13 @@ class AuthenticationRepository {
   /// Throws a [SignUpWithEmailAndPasswordFailure] if an exception occurs.
   Future<void> signUp({required String email, required String password}) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
+      final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
+      if (userCredential.user != null) {
+        await _userDataSource.updateUser(userCredential.user!.toUser);
+      }
     } on FirebaseAuthException catch (e) {
       throw SignUpWithEmailAndPasswordFailure.fromCode(e.code);
     } catch (_) {
@@ -79,6 +99,11 @@ class AuthenticationRepository {
     } catch (_) {
       throw const LogInWithEmailAndPasswordFailure();
     }
+  }
+
+  /// Update user attributes with [User] information.
+  Future<void> updateUserAttributes(User user) async {
+    await _userDataSource.updateUser(user);
   }
 
   /// Forgot password with the provided [email].
@@ -111,6 +136,6 @@ class AuthenticationRepository {
 
 extension on firebase_auth.User {
   User get toUser {
-    return User(id: uid, email: email, name: displayName);
+    return User(id: uid, email: email ?? '', name: displayName);
   }
 }

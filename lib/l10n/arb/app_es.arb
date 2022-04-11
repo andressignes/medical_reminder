@@ -12,6 +12,10 @@
   "@forgotPasswordTitle": {
     "description": "Título de la página de recuperación de contraseña"
   },
+  "profilePageTitle": "Perfil",
+  "@profilePageTitle": {
+    "description": "Título de la página de perfil"
+  },
   "createAccountPageTitle": "Crear cuenta",
   "@createAccountPageTitle": {
     "description": "Título de la página de creación de cuenta"
@@ -43,5 +47,17 @@
   "forgotPasswordButton": "¿Olvidaste tu contraseña?",
   "@forgotPasswordButton": {
     "description": "Texto del botón de olvidar contraseña"
+  },
+  "saveButton": "Guardar",
+  "@saveButton": {
+    "description": "Texto del botón de guardar"
+  },
+  "usernameFieldLabel": "Nombre completo",
+  "@usernameFieldLabel": {
+    "description": "Etiqueta del campo de nombre completo"
+  },
+  "usernameInvalid": "Nombre de usuario inválido",
+  "@usernameInvalid": {
+    "description": "Mensaje de error para nombre inválido"
   }
 }
