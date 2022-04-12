@@ -20,7 +20,9 @@ class ProfileForm extends StatelessWidget {
             vertical: size.height * 0.02,
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const ProfileImage(),
               const EmailTextField(),
               SizedBox(height: size.height * 0.01),
               const NameInput(),
@@ -30,6 +32,8 @@ class ProfileForm extends StatelessWidget {
               const GenderInput(),
               SizedBox(height: size.height * 0.01),
               const ProfileSaveButton(),
+              SizedBox(height: size.height * 0.01),
+              const LogoutButton(),
             ],
           ),
         ),

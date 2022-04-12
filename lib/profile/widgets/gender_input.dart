@@ -20,7 +20,8 @@ class GenderInput extends StatelessWidget {
               );
             },
           ).toList(),
-          value: context.read<AppBloc>().state.user.gender,
+          value: context.read<ProfileCubit>().state.gender ??
+              context.read<AppBloc>().state.user.gender,
           onChanged: (value) {
             if (value != null) {
               context.read<ProfileCubit>().genderChanged(value);

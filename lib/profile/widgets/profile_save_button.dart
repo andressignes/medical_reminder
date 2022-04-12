@@ -10,18 +10,20 @@ class ProfileSaveButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    return BlocBuilder<ProfileCubit, ProfileState>(
-      builder: (context, state) {
-        return state.status.isSubmissionInProgress
-            ? const CircularProgressIndicator()
-            : ElevatedButton(
-                key: const Key('profileForm_save_button'),
-                onPressed: state.status.isValidated
-                    ? () => context.read<ProfileCubit>().save()
-                    : null,
-                child: Text(l10n.saveButton),
-              );
-      },
+    return Center(
+      child: BlocBuilder<ProfileCubit, ProfileState>(
+        builder: (context, state) {
+          return state.status.isSubmissionInProgress
+              ? const CircularProgressIndicator()
+              : ElevatedButton(
+                  key: const Key('profileForm_save_button'),
+                  onPressed: state.status.isValidated
+                      ? () => context.read<ProfileCubit>().save()
+                      : null,
+                  child: Text(l10n.saveButton),
+                );
+        },
+      ),
     );
   }
 }

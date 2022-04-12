@@ -18,16 +18,11 @@ class HomePage extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             key: const Key('homePage_profile_iconButton'),
-            icon: const Icon(Icons.supervised_user_circle),
+            icon: const Icon(Icons.account_circle),
             onPressed: () => Navigator.of(context).push<void>(
               ProfilePage.route(),
             ),
           ),
-          IconButton(
-            key: const Key('homePage_logout_iconButton'),
-            icon: const Icon(Icons.exit_to_app),
-            onPressed: () => context.read<AppBloc>().add(AppLogoutRequested()),
-          )
         ],
       ),
       body: Align(
