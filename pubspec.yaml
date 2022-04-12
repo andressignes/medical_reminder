@@ -10,6 +10,9 @@ dependencies:
   authentication_repository:
     path: packages/authentication_repository
   bloc: ^8.0.3
+  cima_repository:
+    path: packages/cima_repository
+  dartz: ^0.10.1
   equatable: ^2.0.3
   firebase_auth: ^3.3.12
   firebase_core: ^1.14.0

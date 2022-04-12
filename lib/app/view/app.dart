@@ -6,6 +6,7 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:authentication_repository/authentication_repository.dart';
+import 'package:cima_repository/cima_repository.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,7 +27,13 @@ class App extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider<AuthenticationRepository>(
-            create: (_) => authenticationRepository,),
+          create: (_) => authenticationRepository,
+        ),
+        RepositoryProvider(
+          create: (context) => CimaRepository(
+            remoteDataSource: CimaApiClient(baseUrl: 'cima.aemps.es'),
+          ),
+        )
       ],
       child: BlocProvider<AppBloc>(
         create: (context) => AppBloc(

@@ -14,7 +14,7 @@ void main() {
       ) as Map<String, dynamic>;
       cimaPaginadoObj = CimaPaginado(
         pagina: cimaPaginadoJson['pagina'] as int,
-        resultados: cimaPaginadoJson['resultados'] as List<dynamic>,
+        resultados: cimaPaginadoJson['resultados'] as List<Map<String,dynamic>>,
         tamanioPagina: cimaPaginadoJson['tamanioPagina'] as int,
         totalFilas: cimaPaginadoJson['totalFilas'] as int,
       );
@@ -28,13 +28,13 @@ void main() {
       expect(
           CimaPaginado(
                 pagina: 1,
-                resultados: List<dynamic>.empty(growable: true),
+                resultados: List<Map<String,dynamic>>.empty(growable: true),
                 tamanioPagina: 25,
                 totalFilas: 100,
               ) ==
               CimaPaginado(
                 pagina: 1,
-                resultados: List<dynamic>.empty(growable: true),
+                resultados: List<Map<String,dynamic>>.empty(growable: true),
                 tamanioPagina: 25,
                 totalFilas: 100,
               ),

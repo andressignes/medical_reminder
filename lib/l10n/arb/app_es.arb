@@ -63,5 +63,13 @@
   "logoutButton": "Cerrar sesión",
   "@logoutButton": {
     "description": "Texto del botón de cerrar sesión"
+  },
+  "searchMedicationFieldLabel": "Buscar medicamento",
+  "@searchMedicationFieldLabel": {
+    "description": "Etiqueta del campo de búsqueda de medicamento"
+  },
+  "errorSearchMedicationMessage": "No se encontraron medicamentos",
+  "@errorSearchMedicationMessage": {
+    "description": "Mensaje de error para medicamentos no encontrados"
   }
 }

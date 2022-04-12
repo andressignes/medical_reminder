@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:cima_api/cima_api.dart';
-import 'package:cima_model/cima_model.dart';
 import 'package:cima_repository/cima_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:errors/errors.dart';
@@ -155,7 +153,7 @@ void main() {
           problemasSuministroJson as Map<String, dynamic>,
         );
         final resultados =
-            cimaPaginado.resultados! as List<Map<String, dynamic>>;
+            cimaPaginado.resultados!;
         final problemasSuministro =
             resultados.map(ProblemaSuministro.fromJson).toList();
 
@@ -176,7 +174,7 @@ void main() {
             jsonDecode(problemasSuministroRaw) as Map<String, dynamic>;
         final cimaPaginado = CimaPaginado.fromJson(problemasSuministroJson);
         final resultados =
-            cimaPaginado.resultados! as List<Map<String, dynamic>>;
+            cimaPaginado.resultados!;
         final problemasSuministro =
             resultados.map(ProblemaSuministro.fromJson).toList();
         when(() => apiClient.getProblemasSuministro(params: params))

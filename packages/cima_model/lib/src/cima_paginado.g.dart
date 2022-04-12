@@ -10,7 +10,9 @@ CimaPaginado _$CimaPaginadoFromJson(Map<String, dynamic> json) => CimaPaginado(
       totalFilas: json['totalFilas'] as int?,
       pagina: json['pagina'] as int?,
       tamanioPagina: json['tamanioPagina'] as int?,
-      resultados: json['resultados'] as List<dynamic>?,
+      resultados: (json['resultados'] as List<dynamic>?)
+          ?.map((e) => e as Map<String, dynamic>)
+          .toList(),
     );
 
 Map<String, dynamic> _$CimaPaginadoToJson(CimaPaginado instance) {

@@ -18,7 +18,7 @@ class CimaPaginado extends Equatable {
   final int? totalFilas;
   final int? pagina;
   final int? tamanioPagina;
-  final List? resultados;
+  final List<Map<String, dynamic>>? resultados;
 
   Map<String, dynamic> toJson() => _$CimaPaginadoToJson(this);
 

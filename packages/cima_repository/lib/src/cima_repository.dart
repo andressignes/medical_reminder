@@ -58,12 +58,16 @@ class CimaRepository {
           if (cimaPaginado.resultados?.isEmpty ?? true) {
             return const Right([]);
           }
-          final resultados =
-              cimaPaginado.resultados! as List<Map<String, dynamic>>;
-          final medicamentos = resultados.map(Medicamento.fromJson).toList();
+          final resultados = cimaPaginado.resultados!;
+          final medicamentos = List<Medicamento>.from(
+            resultados.map<Medicamento>(
+              Medicamento.fromJson,
+            ),
+          );
+          log('medicamentos: ${medicamentos.length}');
           return Right(medicamentos);
         } catch (e) {
-          log('error: $e');
+          log('error: ${e.toString()}');
           return Left(FormatFailure());
         }
       } else if (response.statusCode == 204) {
@@ -95,8 +99,7 @@ class CimaRepository {
         if (cimaPaginado.resultados?.isEmpty ?? true) {
           return const Right([]);
         }
-        final resultados =
-            cimaPaginado.resultados! as List<Map<String, dynamic>>;
+        final resultados = cimaPaginado.resultados!;
         final problemasSuministro =
             resultados.map(ProblemaSuministro.fromJson).toList();
         return Right(problemasSuministro);
