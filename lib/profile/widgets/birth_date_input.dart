@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
+import 'package:intl/intl.dart';
 import 'package:medicalreminder/app/app.dart';
 import 'package:medicalreminder/profile/cubit/profile_cubit.dart';
 
@@ -10,12 +11,15 @@ class BirthDateInput extends StatelessWidget {
   BirthDateInput({Key? key}) : super(key: key);
 
   late TextEditingController textController;
+  DateFormat dateFormat = DateFormat('dd/MM/yyyy');
 
   @override
   Widget build(BuildContext context) {
     log(context.read<AppBloc>().state.user.birthDate.toString());
     textController = TextEditingController(
-      text: context.read<AppBloc>().state.user.birthDate.toString(),
+      text: context.read<AppBloc>().state.user.birthDate != null
+          ? dateFormat.format(context.read<AppBloc>().state.user.birthDate!)
+          : '',
     );
     return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (context, state) {
@@ -46,7 +50,8 @@ class BirthDateInput extends StatelessWidget {
       log('changed');
       final birthDate = BirthDate.dirty(selectedDate);
       cubit.birthDateChanged(birthDate);
-      textEditingController.text = birthDate.value.toString();
+      textEditingController.text =
+          birthDate.value != null ? dateFormat.format(birthDate.value!) : '';
     }
   }
 }

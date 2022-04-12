@@ -59,5 +59,9 @@
   "usernameInvalid": "Nombre de usuario inválido",
   "@usernameInvalid": {
     "description": "Mensaje de error para nombre inválido"
+  },
+  "logoutButton": "Cerrar sesión",
+  "@logoutButton": {
+    "description": "Texto del botón de cerrar sesión"
   }
 }
