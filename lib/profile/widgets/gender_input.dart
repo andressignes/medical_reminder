@@ -1,8 +1,7 @@
-import 'dart:developer';
-
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medicalreminder/app/app.dart';
 import 'package:medicalreminder/profile/cubit/profile_cubit.dart';
 
 class GenderInput extends StatelessWidget {
@@ -21,9 +20,9 @@ class GenderInput extends StatelessWidget {
               );
             },
           ).toList(),
+          value: context.read<AppBloc>().state.user.gender,
           onChanged: (value) {
             if (value != null) {
-              log(value.name);
               context.read<ProfileCubit>().genderChanged(value);
             }
           },
@@ -31,9 +30,5 @@ class GenderInput extends StatelessWidget {
         );
       },
     );
-  }
-
-  Gender _onChanged(Gender? value) {
-    return value ?? Gender.genderless;
   }
 }

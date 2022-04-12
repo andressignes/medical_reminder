@@ -50,8 +50,12 @@ class ProfileCubit extends Cubit<ProfileState> {
       final currentUser = await _authenticationRepository.userAttributes;
       await _authenticationRepository.updateUserAttributes(
         currentUser.copyWith(
-          name: state.name.value,
-          birthDate: state.birthDate.value,
+          name: state.name.status == FormzInputStatus.pure
+              ? null
+              : state.name.value,
+          birthDate: state.birthDate.status == FormzInputStatus.pure
+              ? null
+              : state.birthDate.value,
           gender: state.gender,
         ),
       );

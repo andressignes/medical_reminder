@@ -14,6 +14,7 @@ class EmailTextField extends StatelessWidget {
         return TextFormField(
           key: const Key('profile_email_textField'),
           initialValue: context.read<AppBloc>().state.user.email,
+          enabled: false,
           decoration: InputDecoration(
             labelText: l10n.emailFieldLabel,
           ),

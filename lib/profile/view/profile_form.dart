@@ -25,7 +25,7 @@ class ProfileForm extends StatelessWidget {
               SizedBox(height: size.height * 0.01),
               const NameInput(),
               SizedBox(height: size.height * 0.01),
-              const BirthDateInput(),
+              BirthDateInput(),
               SizedBox(height: size.height * 0.01),
               const GenderInput(),
               SizedBox(height: size.height * 0.01),

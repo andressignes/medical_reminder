@@ -35,10 +35,11 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            const SizedBox(height: 4),
-            Text(user.email, style: textTheme.headline6),
-            const SizedBox(height: 4),
-            Text(user.name ?? '', style: textTheme.headline5),
+            Text('id: ${user.id}'),
+            Text('Email: ${user.email}'),
+            Text('Name: ${user.name}'),
+            Text('Gender ${user.gender.toString()}'),
+            Text('Birth: ${user.birthDate.toString()}'),
           ],
         ),
       ),
