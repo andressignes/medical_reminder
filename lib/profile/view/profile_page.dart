@@ -11,6 +11,8 @@ class ProfilePage extends StatelessWidget {
   static Route route() =>
       MaterialPageRoute<void>(builder: (_) => const ProfilePage());
 
+  static Page page() => const MaterialPage<void>(child: ProfilePage());
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;

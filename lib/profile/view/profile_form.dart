@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medicalreminder/profile/cubit/profile_cubit.dart';
-import 'package:medicalreminder/profile/widgets/birth_date_input.dart';
-import 'package:medicalreminder/profile/widgets/gender_input.dart';
 import 'package:medicalreminder/profile/widgets/widgets.dart';
 
 class ProfileForm extends StatelessWidget {

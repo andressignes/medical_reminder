@@ -1,0 +1,19 @@
+name: cima_repository
+publish_to: none
+
+environment:
+  sdk: ">=2.16.0 <3.0.0"
+
+dependencies:
+  cima_api:
+    path: ../cima_api
+  cima_model:
+    path: ../cima_model
+  collection: ^1.15.0
+  dartz: any
+  errors:
+    path: ../errors
+dev_dependencies:
+  mocktail: any
+  test: any
+  very_good_analysis: ^2.4.0

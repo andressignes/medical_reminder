@@ -6,6 +6,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 part 'app_event.dart';
+
 part 'app_state.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
@@ -33,7 +34,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   late final StreamSubscription<User> _userSubscription;
   late final StreamSubscription<User> _userAttributesSubscription;
 
-  void _onUserChanged(AppUserChanged event, Emitter<AppState> emit) async {
+  Future<void> _onUserChanged(
+    AppUserChanged event,
+    Emitter<AppState> emit,
+  ) async {
     log('AppBloc._onUserChanged');
     event.user.isNotEmpty
         ? emit(

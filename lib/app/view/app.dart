@@ -26,8 +26,7 @@ class App extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider<AuthenticationRepository>(
-          create: (_) => AuthenticationRepository(),
-        ),
+            create: (_) => authenticationRepository,),
       ],
       child: BlocProvider<AppBloc>(
         create: (context) => AppBloc(

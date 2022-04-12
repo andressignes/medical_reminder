@@ -1,0 +1,14 @@
+name: cima_api
+description: CIMA API Client
+version: 0.0.1
+
+environment:
+  sdk: ">=2.16.0 <3.0.0"
+
+dependencies:
+  http: any
+
+dev_dependencies:
+  mocktail: ^0.3.0
+  test: any
+  very_good_analysis: ^2.4.0
