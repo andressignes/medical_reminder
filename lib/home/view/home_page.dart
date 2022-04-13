@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medicalreminder/app/bloc/app_bloc.dart';
 import 'package:medicalreminder/l10n/l10n.dart';
 import 'package:medicalreminder/profile/view/profile_page.dart';
-import 'package:medicalreminder/search_medication/view/search_medication_page.dart';
+import 'package:medicalreminder/medication_search/medication_search.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
         tooltip: l10n.searchMedicationFieldLabel,
         onPressed: () => Navigator.push<void>(
           context,
-          SearchMedicationPage.route(),
+          MedicationSearchPage.route(),
         ),
         child: const Icon(Icons.search),
       ),
