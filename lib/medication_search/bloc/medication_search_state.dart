@@ -1,20 +1,20 @@
-part of 'search_medication_bloc.dart';
+part of 'medication_search_bloc.dart';
 
-enum SearchMedicationStatus {
+enum MedicationSearchStatus {
   initial,
   loading,
   loaded,
   error,
 }
 
-class SearchMedicationState extends Equatable {
-  const SearchMedicationState({
-    this.status = SearchMedicationStatus.initial,
+class MedicationSearchState extends Equatable {
+  const MedicationSearchState({
+    this.status = MedicationSearchStatus.initial,
     this.medications = const <Medicamento>[],
     this.hasReachedMax = false,
   });
 
-  final SearchMedicationStatus status;
+  final MedicationSearchStatus status;
   final List<Medicamento> medications;
   final bool hasReachedMax;
 
@@ -25,12 +25,12 @@ class SearchMedicationState extends Equatable {
         hasReachedMax,
       ];
 
-  SearchMedicationState copyWith({
-    SearchMedicationStatus? status,
+  MedicationSearchState copyWith({
+    MedicationSearchStatus? status,
     List<Medicamento>? medications,
     bool? hasReachedMax,
   }) {
-    return SearchMedicationState(
+    return MedicationSearchState(
       status: status ?? this.status,
       medications: medications ?? this.medications,
       hasReachedMax: hasReachedMax ?? this.hasReachedMax,

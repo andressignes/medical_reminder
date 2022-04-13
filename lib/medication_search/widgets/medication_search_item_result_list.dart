@@ -1,8 +1,8 @@
 import 'package:cima_model/cima_model.dart';
 import 'package:flutter/material.dart';
 
-class SearchMedicationItemResultList extends StatelessWidget {
-  const SearchMedicationItemResultList({
+class MedicationSearchItemResultList extends StatelessWidget {
+  const MedicationSearchItemResultList({
     Key? key,
     required Medicamento medication,
   })  : _medication = medication,

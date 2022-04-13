@@ -4,15 +4,14 @@ import 'package:bloc/bloc.dart';
 import 'package:cima_repository/cima_repository.dart';
 import 'package:equatable/equatable.dart';
 
-part 'search_medication_event.dart';
+part 'medication_search_event.dart';
+part 'medication_search_state.dart';
 
-part 'search_medication_state.dart';
-
-class SearchMedicationBloc
-    extends Bloc<SearchMedicationEvent, SearchMedicationState> {
-  SearchMedicationBloc({
+class MedicationSearchBloc
+    extends Bloc<MedicationSearchEvent, MedicationSearchState> {
+  MedicationSearchBloc({
     required this.cimaRepository,
-  }) : super(const SearchMedicationState()) {
+  }) : super(const MedicationSearchState()) {
     on<MedicationsFetched>(_onMedicationFetched);
   }
 
@@ -20,7 +19,7 @@ class SearchMedicationBloc
 
   FutureOr<void> _onMedicationFetched(
     MedicationsFetched event,
-    Emitter<SearchMedicationState> emit,
+    Emitter<MedicationSearchState> emit,
   ) async {
     if (state.hasReachedMax) return null;
     try {
@@ -33,19 +32,19 @@ class SearchMedicationBloc
       emit(
         medications.fold(
           (failure) => state.copyWith(
-            status: SearchMedicationStatus.error,
+            status: MedicationSearchStatus.error,
           ),
           (medications) => state.copyWith(
-            medications: List<Medicamento>.from(state.medications)
-              ..addAll(medications),
-            status: SearchMedicationStatus.loaded,
+            medications: medications,
+            //List<Medicamento>.from(state.medications)..addAll(medications),
+            status: MedicationSearchStatus.loaded,
           ),
         ),
       );
     } catch (e) {
       emit(
         state.copyWith(
-          status: SearchMedicationStatus.error,
+          status: MedicationSearchStatus.error,
         ),
       );
     }
