@@ -1,5 +1,6 @@
 import 'package:cima_model/cima_model.dart';
 import 'package:flutter/material.dart';
+import 'package:medicalreminder/medication_detail/medication_detail.dart';
 
 class MedicationSearchItemResultList extends StatelessWidget {
   const MedicationSearchItemResultList({
@@ -13,11 +14,10 @@ class MedicationSearchItemResultList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      // onTap: () => Navigator.push(
-      //     context,
-      //     MaterialPageRoute(
-      //         builder: (context) =>
-      //             MedicationDetailPage(nregistro: _medication.nregistro))),
+      onTap: () => Navigator.push<void>(
+        context,
+        MedicationDetailPage.route(medication: _medication),
+      ),
       child: Card(
         child: Row(
           children: [

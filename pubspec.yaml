@@ -26,6 +26,7 @@ dependencies:
     path: packages/form_inputs
   formz: ^0.4.1
   intl: ^0.17.0
+  url_launcher: any
 
 dev_dependencies:
   bloc_test: ^9.0.3
@@ -37,3 +38,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+  assets:
+    - assets/images/

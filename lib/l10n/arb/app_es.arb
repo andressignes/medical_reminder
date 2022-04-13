@@ -71,5 +71,25 @@
   "errorSearchMedicationMessage": "No se encontraron medicamentos",
   "@errorSearchMedicationMessage": {
     "description": "Mensaje de error para medicamentos no encontrados"
+  },
+  "medicationDetailPageTitle": "Detalle de medicamento",
+  "@medicationDetailPageTitle": {
+    "description": "Título de la página de detalle de medicamento"
+  },
+  "technicalSpecificationFieldLabel": "Ficha técnica",
+  "@technicalSpecificationFieldLabel": {
+    "description": "Etiqueta del campo de ficha técnica"
+  },
+  "prospectusFieldLabel": "Prospecto",
+  "@prospectusFieldLabel": {
+    "description": "Etiqueta del campo de prospecto"
+  },
+  "pharmaceuticalFormFieldLabel": "Forma farmacéutica",
+  "@pharmaceuticalFormFieldLabel": {
+    "description": "Etiqueta del campo de forma farmacéutica"
+  },
+  "dosageFieldLabel": "Dosis",
+  "@dosageFieldLabel": {
+    "description": "Etiqueta del campo de dosis"
   }
 }
