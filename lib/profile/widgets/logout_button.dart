@@ -11,7 +11,10 @@ class LogoutButton extends StatelessWidget {
     final l10n = context.l10n;
     return Center(
       child: TextButton(
-        onPressed: () => context.read<AppBloc>().add(AppLogoutRequested()),
+        onPressed: () {
+          context.read<AppBloc>().add(AppLogoutRequested());
+          Navigator.of(context).pop();
+        },
         child: Text(l10n.logoutButton),
       ),
     );
