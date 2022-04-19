@@ -1,19 +1,19 @@
 import 'package:formz/formz.dart';
 
-/// Validation errors for the [Email] [FormzInput].
+/// Validation errors for the [Username] [FormzInput].
 enum UsernameValidationError {
   /// Generic invalid error.
   invalid
 }
 
-/// {@template email}
-/// Form input for an email input.
+/// {@template username}
+/// Form input for an username input.
 /// {@endtemplate}
 class Username extends FormzInput<String, UsernameValidationError> {
-  /// {@macro email}
+  /// {@macro username}
   const Username.pure() : super.pure('');
 
-  /// {@macro email}
+  /// {@macro username}
   const Username.dirty([String value = '']) : super.dirty(value);
 
   @override

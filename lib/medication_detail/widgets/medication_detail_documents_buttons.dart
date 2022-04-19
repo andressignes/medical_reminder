@@ -1,7 +1,7 @@
 import 'package:cima_repository/cima_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:medicalreminder/l10n/l10n.dart';
-import 'package:medicalreminder/medication_detail/medication_detail.dart';
+import 'package:medical_reminder/l10n/l10n.dart';
+import 'package:medical_reminder/medication_detail/medication_detail.dart';
 
 class MedicationDetailDocumentsButtons extends StatelessWidget {
   const MedicationDetailDocumentsButtons({

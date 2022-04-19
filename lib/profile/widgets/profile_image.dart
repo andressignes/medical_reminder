@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medicalreminder/app/bloc/app_bloc.dart';
-import 'package:medicalreminder/profile/cubit/profile_cubit.dart';
+import 'package:medical_reminder/app/bloc/app_bloc.dart';
+import 'package:medical_reminder/profile/cubit/profile_cubit.dart';
 
 class ProfileImage extends StatelessWidget {
   const ProfileImage({Key? key}) : super(key: key);

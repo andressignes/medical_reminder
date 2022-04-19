@@ -1,9 +1,9 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medicalreminder/l10n/l10n.dart';
-import 'package:medicalreminder/profile/cubit/profile_cubit.dart';
-import 'package:medicalreminder/profile/view/profile_form.dart';
+import 'package:medical_reminder/l10n/l10n.dart';
+import 'package:medical_reminder/profile/cubit/profile_cubit.dart';
+import 'package:medical_reminder/profile/view/profile_form.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);

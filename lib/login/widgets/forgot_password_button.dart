@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:medicalreminder/forgot_password/view/forgot_password_page.dart';
-import 'package:medicalreminder/l10n/l10n.dart';
+import 'package:medical_reminder/forgot_password/view/forgot_password_page.dart';
+import 'package:medical_reminder/l10n/l10n.dart';
 
 class ForgotPasswordButton extends StatelessWidget {
   const ForgotPasswordButton({Key? key}) : super(key: key);

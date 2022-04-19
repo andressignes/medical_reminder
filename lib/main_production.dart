@@ -6,8 +6,8 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:authentication_repository/authentication_repository.dart';
-import 'package:medicalreminder/app/app.dart';
-import 'package:medicalreminder/bootstrap.dart';
+import 'package:medical_reminder/app/app.dart';
+import 'package:medical_reminder/bootstrap.dart';
 
 void main() {
   bootstrap(

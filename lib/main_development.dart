@@ -8,9 +8,9 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
-import 'package:medicalreminder/app/app.dart';
-import 'package:medicalreminder/bootstrap.dart';
-import 'package:medicalreminder/firebase_options.dart';
+import 'package:medical_reminder/app/app.dart';
+import 'package:medical_reminder/bootstrap.dart';
+import 'package:medical_reminder/firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

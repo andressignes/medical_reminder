@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medicalreminder/l10n/l10n.dart';
-import 'package:medicalreminder/login/login.dart';
+import 'package:medical_reminder/l10n/l10n.dart';
+import 'package:medical_reminder/login/login.dart';
 
 class PasswordInput extends StatelessWidget {
   const PasswordInput({Key? key}) : super(key: key);

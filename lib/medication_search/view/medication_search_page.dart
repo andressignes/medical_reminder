@@ -1,9 +1,8 @@
 import 'package:cima_repository/cima_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medicalreminder/l10n/l10n.dart';
-import 'package:medicalreminder/medication_search/medication_search.dart';
-
+import 'package:medical_reminder/l10n/l10n.dart';
+import 'package:medical_reminder/medication_search/medication_search.dart';
 
 class MedicationSearchPage extends StatelessWidget {
   const MedicationSearchPage({Key? key}) : super(key: key);
@@ -24,7 +23,3 @@ class MedicationSearchPage extends StatelessWidget {
     );
   }
 }
-
-
-
-

@@ -7,7 +7,7 @@
 
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:medicalreminder/app/app.dart';
+import 'package:medical_reminder/app/app.dart';
 
 void main() {
   group('App', () {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:medicalreminder/l10n/l10n.dart';
-import 'package:medicalreminder/sign_up/sign_up.dart' show SignUpPage;
+import 'package:medical_reminder/l10n/l10n.dart';
+import 'package:medical_reminder/sign_up/sign_up.dart' show SignUpPage;
 
 class CreateAccountButton extends StatelessWidget {
   const CreateAccountButton({Key? key}) : super(key: key);

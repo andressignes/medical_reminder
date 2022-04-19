@@ -1,6 +1,6 @@
 import 'package:cima_repository/cima_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:medicalreminder/l10n/l10n.dart';
+import 'package:medical_reminder/l10n/l10n.dart';
 
 class MedicationDetailDosageWidget extends StatelessWidget {
   const MedicationDetailDosageWidget({

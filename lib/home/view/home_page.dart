@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medicalreminder/app/bloc/app_bloc.dart';
-import 'package:medicalreminder/l10n/l10n.dart';
-import 'package:medicalreminder/profile/view/profile_page.dart';
-import 'package:medicalreminder/medication_search/medication_search.dart';
+import 'package:medical_reminder/app/bloc/app_bloc.dart';
+import 'package:medical_reminder/l10n/l10n.dart';
+import 'package:medical_reminder/medication_search/medication_search.dart';
+import 'package:medical_reminder/profile/view/profile_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

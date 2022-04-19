@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medicalreminder/l10n/l10n.dart';
-import 'package:medicalreminder/sign_up/sign_up.dart';
+import 'package:medical_reminder/l10n/l10n.dart';
+import 'package:medical_reminder/sign_up/sign_up.dart';
 
 class ConfirmPasswordInput extends StatelessWidget {
   const ConfirmPasswordInput({Key? key}) : super(key: key);

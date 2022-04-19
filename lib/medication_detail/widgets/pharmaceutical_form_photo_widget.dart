@@ -1,6 +1,6 @@
 import 'package:cima_model/cima_model.dart' show Foto;
 import 'package:flutter/material.dart';
-import 'package:medicalreminder/medication_detail/widgets/widgets.dart';
+import 'package:medical_reminder/medication_detail/widgets/widgets.dart';
 
 class PharmaceuticalFormPhotoWidget extends StatelessWidget {
   const PharmaceuticalFormPhotoWidget({

@@ -1,8 +1,9 @@
 import 'package:cima_repository/cima_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medicalreminder/l10n/l10n.dart';
-import 'package:medicalreminder/medication_detail/medication_detail.dart';
+import 'package:medical_reminder/create_treatment/view/create_treatment_page.dart';
+import 'package:medical_reminder/l10n/l10n.dart';
+import 'package:medical_reminder/medication_detail/medication_detail.dart';
 
 class MedicationDetailView extends StatelessWidget {
   const MedicationDetailView({
@@ -47,6 +48,15 @@ class MedicationDetailView extends StatelessWidget {
                         ),
                         MedicationDetailDosageWidget(medicamento: medicamento),
                         MedicationDetailWarningWidget(medicamento: medicamento),
+                        ElevatedButton(
+                          onPressed: () => Navigator.push<void>(
+                            context,
+                            CreateTreatmentPage.route(),
+                          ),
+                          child: Text(
+                            l10n.medicationDetailPageCreateTreatmentButton,
+                          ),
+                        ),
                       ],
                     ),
                   )

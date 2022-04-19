@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medicalreminder/app/app.dart';
-import 'package:medicalreminder/l10n/l10n.dart';
-import 'package:medicalreminder/profile/cubit/profile_cubit.dart';
+import 'package:medical_reminder/app/app.dart';
+import 'package:medical_reminder/l10n/l10n.dart';
+import 'package:medical_reminder/profile/cubit/profile_cubit.dart';
 
 class NameInput extends StatelessWidget {
   const NameInput({Key? key}) : super(key: key);

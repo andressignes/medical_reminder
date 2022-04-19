@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io' show Platform;
 
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -23,7 +22,7 @@ class PdfButtonWidget extends StatelessWidget {
     return ElevatedButton(
       onPressed: () => _openBrowser(url),
       child: Padding(
-        padding: const EdgeInsets.all(4.0),
+        padding: const EdgeInsets.all(4),
         child: Column(
           children: [
             const Icon(Icons.picture_as_pdf),

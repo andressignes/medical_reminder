@@ -91,5 +91,9 @@
   "dosageFieldLabel": "Dosis",
   "@dosageFieldLabel": {
     "description": "Etiqueta del campo de dosis"
+  },
+  "medicationDetailPageCreateTreatmentButton": "Crear tratamiento",
+  "@medicationDetailPageCreateTreatmentButton": {
+    "description": "Texto del botón de crear tratamiento"
   }
 }

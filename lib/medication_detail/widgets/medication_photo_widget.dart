@@ -1,6 +1,6 @@
 import 'package:cima_model/cima_model.dart' show Foto;
 import 'package:flutter/material.dart';
-import 'package:medicalreminder/medication_detail/widgets/image_fullscreen_page.dart';
+import 'package:medical_reminder/medication_detail/widgets/image_fullscreen_page.dart';
 
 class MedicationPhotoWidget extends StatelessWidget {
   const MedicationPhotoWidget({
@@ -32,13 +32,15 @@ class MedicationPhotoWidget extends StatelessWidget {
               ),
               child: Hero(
                 tag: urlPhoto,
-                child: Image.network(urlPhoto.replaceAll('thumbnails', 'full'),
-                    fit: BoxFit.cover,
-                    loadingBuilder: (context, child, loadingProgress) {
-                  return loadingProgress == null
-                      ? child
-                      : const Center(child: CircularProgressIndicator());
-                }),
+                child: Image.network(
+                  urlPhoto.replaceAll('thumbnails', 'full'),
+                  fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    return loadingProgress == null
+                        ? child
+                        : const Center(child: CircularProgressIndicator());
+                  },
+                ),
               ),
             ),
     );

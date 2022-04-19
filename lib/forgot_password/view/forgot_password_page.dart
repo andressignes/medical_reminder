@@ -1,9 +1,9 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medicalreminder/forgot_password/cubit/forgot_password_cubit.dart';
-import 'package:medicalreminder/forgot_password/view/forgot_password_form.dart';
-import 'package:medicalreminder/l10n/l10n.dart';
+import 'package:medical_reminder/forgot_password/cubit/forgot_password_cubit.dart';
+import 'package:medical_reminder/forgot_password/view/forgot_password_form.dart';
+import 'package:medical_reminder/l10n/l10n.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({Key? key}) : super(key: key);

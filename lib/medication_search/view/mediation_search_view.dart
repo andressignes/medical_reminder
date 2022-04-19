@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medicalreminder/l10n/l10n.dart';
-import 'package:medicalreminder/medication_search/medication_search.dart';
+import 'package:medical_reminder/l10n/l10n.dart';
+import 'package:medical_reminder/medication_search/medication_search.dart';
 
 class SearchMedicalView extends StatelessWidget {
   const SearchMedicalView({Key? key}) : super(key: key);

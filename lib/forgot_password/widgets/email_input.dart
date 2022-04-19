@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medicalreminder/forgot_password/cubit/forgot_password_cubit.dart';
-import 'package:medicalreminder/l10n/l10n.dart';
+import 'package:medical_reminder/forgot_password/cubit/forgot_password_cubit.dart';
+import 'package:medical_reminder/l10n/l10n.dart';
 
 class EmailInput extends StatelessWidget {
   const EmailInput({Key? key}) : super(key: key);

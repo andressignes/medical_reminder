@@ -10,10 +10,10 @@ enum BirthDateValidationError {
 /// Form input for an Birth Date input.
 /// {@endtemplate}
 class BirthDate extends FormzInput<DateTime?, BirthDateValidationError> {
-  /// {@macro email}
+  /// {@macro BirthDate}
   const BirthDate.pure() : super.pure(null);
 
-  /// {@macro email}
+  /// {@macro BirthDate}
   const BirthDate.dirty([DateTime? value]) : super.dirty(value);
 
   @override

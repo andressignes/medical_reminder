@@ -1,6 +1,6 @@
 import 'package:cima_model/cima_model.dart';
 import 'package:flutter/material.dart';
-import 'package:medicalreminder/medication_detail/medication_detail.dart';
+import 'package:medical_reminder/medication_detail/medication_detail.dart';
 
 class MedicationSearchItemResultList extends StatelessWidget {
   const MedicationSearchItemResultList({
