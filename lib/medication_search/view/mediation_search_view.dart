@@ -1,7 +1,6 @@
 import 'package:cima_repository/cima_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medical_reminder/l10n/l10n.dart';
 import 'package:medical_reminder/medication_search/medication_search.dart';
 import 'package:medical_reminder/medication_search/widgets/search_medication_delegate.dart';
 
@@ -10,7 +9,6 @@ class SearchMedicalView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
     return Scaffold(
       appBar: AppBar(
         // title: TextFormField(
@@ -30,8 +28,9 @@ class SearchMedicalView extends StatelessWidget {
             icon: const Icon(Icons.search),
             onPressed: () => showSearch<Medicamento?>(
               context: context,
-              delegate:
-                  SearchMedicationDelegate(context.read<MedicationSearchBloc>()),
+              delegate: SearchMedicationDelegate(
+                context.read<MedicationSearchBloc>(),
+              ),
             ),
           ),
         ],
