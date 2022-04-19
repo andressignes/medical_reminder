@@ -79,7 +79,9 @@ class Medicamento extends Equatable {
     return docs!.firstWhere((d) => d.tipo == type);
   }
 
-  Foto? get fotoMaterialAS => getFoto(FotoType.materialAcondicionamentoSecundario);
+  Foto? get fotoMaterialAS =>
+      getFoto(FotoType.materialAcondicionamentoSecundario);
+
   Foto? get fotoFormaFarmaceutica => getFoto(FotoType.formaFarmaceutica);
 
   Foto? getFoto(FotoType type) {

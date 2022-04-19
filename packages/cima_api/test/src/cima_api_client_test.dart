@@ -20,16 +20,16 @@ void main() {
     });
 
     test('can be instantiated without client', () {
-      expect(CimaApiClient(baseUrl: baseUrl), isNotNull);
+      expect(CimaApiClient(), isNotNull);
     });
 
     test('can be instantiated with client', () {
       expect(
-          CimaApiClient(
-            httpClient: MockHttpClient(),
-            baseUrl: baseUrl,
-          ),
-          isNotNull,);
+        CimaApiClient(
+          httpClient: MockHttpClient(),
+        ),
+        isNotNull,
+      );
     });
 
     group('getMedicamento', () {
@@ -39,15 +39,16 @@ void main() {
         params['cn'] = cn;
 
         when(
-          () => client.get(Uri.https(
-            baseUrl,
-            '/cima/rest/medicamento',
-            params,
-          ),),
+          () => client.get(
+            Uri.https(
+              baseUrl,
+              '/cima/rest/medicamento',
+              params,
+            ),
+          ),
         ).thenAnswer((_) async => Response(jsonEncode(jsonResponse), 200));
         final apiClient = CimaApiClient(
           httpClient: client,
-          baseUrl: baseUrl,
         );
         final result = await apiClient.getMedicationByCN(cn);
         expect(result, isA<Response>());
@@ -60,15 +61,16 @@ void main() {
         params['cn'] = cn;
 
         when(
-          () => client.get(Uri.https(
-            baseUrl,
-            '/cima/rest/medicamento',
-            params,
-          ),),
+          () => client.get(
+            Uri.https(
+              baseUrl,
+              '/cima/rest/medicamento',
+              params,
+            ),
+          ),
         ).thenAnswer((_) async => Response('', 204));
         final apiClient = CimaApiClient(
           httpClient: client,
-          baseUrl: baseUrl,
         );
         final result = await apiClient.getMedicationByCN(cn);
         expect(result, isA<Response>());
@@ -80,15 +82,16 @@ void main() {
         final params = <String, String>{};
         params['nregistro'] = nRegistro;
         when(
-          () => client.get(Uri.https(
-            baseUrl,
-            '/cima/rest/medicamento',
-            params,
-          ),),
+          () => client.get(
+            Uri.https(
+              baseUrl,
+              '/cima/rest/medicamento',
+              params,
+            ),
+          ),
         ).thenAnswer((_) async => Response(jsonResponse, 200));
         final apiClient = CimaApiClient(
           httpClient: client,
-          baseUrl: baseUrl,
         );
         final result = await apiClient.getMedicationByNRegistro(nRegistro);
         expect(result, isA<Response>());
@@ -100,15 +103,16 @@ void main() {
       test('get medications without params', () async {
         final params = <String, String>{};
         when(
-          () => client.get(Uri.https(
-            baseUrl,
-            '/cima/rest/medicamentos',
-            params,
-          ),),
+          () => client.get(
+            Uri.https(
+              baseUrl,
+              '/cima/rest/medicamentos',
+              params,
+            ),
+          ),
         ).thenAnswer((_) async => Response('', 204));
         final apiClient = CimaApiClient(
           httpClient: client,
-          baseUrl: baseUrl,
         );
         final result = await apiClient.getMedications(params: params);
         expect(result, isA<Response>());
@@ -119,16 +123,17 @@ void main() {
         final params = <String, String>{};
         params['nombre'] = 'paracetamol';
         when(
-          () => client.get(Uri.https(
-            baseUrl,
-            '/cima/rest/medicamentos',
-            params,
-          ),),
+          () => client.get(
+            Uri.https(
+              baseUrl,
+              '/cima/rest/medicamentos',
+              params,
+            ),
+          ),
         ).thenAnswer((_) async => Response('', 200));
 
         final apiClient = CimaApiClient(
           httpClient: client,
-          baseUrl: baseUrl,
         );
         final result = await apiClient.getMedications(params: params);
         expect(result, isA<Response>());
@@ -140,15 +145,16 @@ void main() {
       test('get Problemas Suministro', () async {
         final params = <String, String>{};
         when(
-          () => client.get(Uri.https(
-            baseUrl,
-            '/cima/rest/psuministro',
-            params,
-          ),),
+          () => client.get(
+            Uri.https(
+              baseUrl,
+              '/cima/rest/psuministro',
+              params,
+            ),
+          ),
         ).thenAnswer((_) async => Response('', 200));
         final apiClient = CimaApiClient(
           httpClient: client,
-          baseUrl: baseUrl,
         );
         final result = await apiClient.getProblemasSuministro(params: params);
         expect(result, isA<Response>());

@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medical_reminder/core/form_inputs/form_inputs.dart';
-import 'package:medical_reminder/create_treatment/cubit/create_treatment_cubit.dart';
+import 'package:medical_reminder/create_treatment/cubit/create_treatment_bloc.dart';
 import 'package:medical_reminder/l10n/l10n.dart';
 
 class FrequencyField extends StatelessWidget {
@@ -15,7 +15,7 @@ class FrequencyField extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return BlocBuilder<CreateTreatmentCubit, CreateTreatmentState>(
+    return BlocBuilder<CreateTreatmentBloc, CreateTreatmentState>(
       builder: (context, state) {
         return DropdownButtonFormField<int>(
           items: _frequencyOptions
@@ -26,11 +26,15 @@ class FrequencyField extends StatelessWidget {
                 ),
               )
               .toList(),
-          onChanged: (value) => value != null
-              ? context.read<CreateTreatmentCubit>().frequencyChanged(
+          onChanged: (value) {
+            if (value == null) return;
+            log('Frequency changed to $value');
+            context.read<CreateTreatmentBloc>().add(
+                  FrequencyChangedCreateTreatmentEvent(
                     Frequency.dirty(value: value),
-                  )
-              : null,
+                  ),
+                );
+          },
           value: state.frequency.value,
           decoration: InputDecoration(
             labelText: l10n.frequencyFieldLabel,
@@ -39,9 +43,5 @@ class FrequencyField extends StatelessWidget {
         );
       },
     );
-  }
-
-  void _onChanged(int? value) {
-    log('FrequencyField: _onChanged: $value');
   }
 }

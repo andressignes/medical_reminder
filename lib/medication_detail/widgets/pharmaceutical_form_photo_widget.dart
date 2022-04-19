@@ -1,4 +1,3 @@
-import 'package:cima_model/cima_model.dart' show Foto;
 import 'package:cima_repository/cima_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/medication_detail/widgets/widgets.dart';

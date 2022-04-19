@@ -1,19 +1,15 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:formz/formz.dart';
-import 'package:medical_reminder/create_treatment/cubit/create_treatment_cubit.dart';
-import 'package:medical_reminder/l10n/l10n.dart';
+import 'package:medical_reminder/create_treatment/cubit/create_treatment_bloc.dart';
 
 class MedicationNameField extends StatelessWidget {
   const MedicationNameField({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
     final size = MediaQuery.of(context).size;
-    return BlocBuilder<CreateTreatmentCubit, CreateTreatmentState>(
+    return BlocBuilder<CreateTreatmentBloc, CreateTreatmentState>(
       builder: (context, state) {
         log(state.toString());
         return Padding(

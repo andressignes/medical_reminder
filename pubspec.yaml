@@ -26,6 +26,8 @@ dependencies:
     path: packages/form_inputs
   formz: ^0.4.1
   intl: ^0.17.0
+  treatment_repository:
+    path: packages/treatment_repository
   url_launcher: any
 
 dev_dependencies:

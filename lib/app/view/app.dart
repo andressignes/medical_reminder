@@ -13,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:medical_reminder/app/app.dart';
 import 'package:medical_reminder/l10n/l10n.dart';
+import 'package:treatment_repository/treatment_repository.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -30,10 +31,11 @@ class App extends StatelessWidget {
           create: (_) => authenticationRepository,
         ),
         RepositoryProvider(
-          create: (context) => CimaRepository(
-            remoteDataSource: CimaApiClient(baseUrl: 'cima.aemps.es'),
+          create: (_) => CimaRepository(
+            remoteDataSource: CimaApiClient(),
           ),
-        )
+        ),
+        RepositoryProvider(create: (_) => TreatmentRepository()),
       ],
       child: BlocProvider<AppBloc>(
         create: (context) => AppBloc(

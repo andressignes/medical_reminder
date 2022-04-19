@@ -1,7 +1,8 @@
-part of 'create_treatment_cubit.dart';
+part of 'create_treatment_bloc.dart';
 
 class CreateTreatmentState extends Equatable {
   const CreateTreatmentState({
+    required this.userId,
     this.status = FormzStatus.pure,
     this.startDate = const StartDate.pure(),
     this.endDate = const EndDate.pure(),
@@ -10,6 +11,7 @@ class CreateTreatmentState extends Equatable {
   });
 
   final FormzStatus status;
+  final String userId;
   final MedicationFormInput medication;
   final StartDate startDate;
   final EndDate endDate;
@@ -18,24 +20,38 @@ class CreateTreatmentState extends Equatable {
   @override
   List<Object?> get props => [
         status,
+        userId,
         medication,
         startDate,
         endDate,
+        frequency,
       ];
 
   CreateTreatmentState copyWith({
+    String? userId,
     FormzStatus? status,
     MedicationFormInput? medication,
     StartDate? startDate,
     EndDate? endDate,
     Frequency? frequency,
   }) {
-    return CreateTreatmentState(
+    final r = CreateTreatmentState(
+      userId: userId ?? this.userId,
       status: status ?? this.status,
       medication: medication ?? this.medication,
       startDate: startDate ?? this.startDate,
       endDate: endDate ?? this.endDate,
       frequency: frequency ?? this.frequency,
     );
+    return r;
   }
+
+  @override
+  String toString() => 'CreateTreatmentState { '
+      'userId: $userId, '
+      'status: $status, '
+      'medication: ${medication.value?.nregistro ?? ''}, '
+      'startDate: $startDate, '
+      'endDate: $endDate, '
+      'frequency: $frequency }';
 }

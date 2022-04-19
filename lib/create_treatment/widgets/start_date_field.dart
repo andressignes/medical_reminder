@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:medical_reminder/core/form_inputs/form_inputs.dart';
-import 'package:medical_reminder/create_treatment/cubit/create_treatment_cubit.dart';
+import 'package:medical_reminder/create_treatment/cubit/create_treatment_bloc.dart';
 import 'package:medical_reminder/l10n/l10n.dart';
 
 const _format = 'dd/MM/yyyy';
@@ -18,14 +18,16 @@ class StartDateField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    return BlocBuilder<CreateTreatmentCubit, CreateTreatmentState>(
+    return BlocBuilder<CreateTreatmentBloc, CreateTreatmentState>(
       builder: (context, state) {
+        _controller.text = state.startDate.value != null
+            ? dateFormat.format(state.startDate.value!)
+            : '';
         return TextFormField(
           controller: _controller,
           onTap: () => _onTap(
             context,
-            context.read<CreateTreatmentCubit>(),
-            _controller,
+            context.read<CreateTreatmentBloc>(),
           ),
           decoration: InputDecoration(
             labelText: l10n.startDateFieldLabel,
@@ -40,8 +42,7 @@ class StartDateField extends StatelessWidget {
 
   Future<void> _onTap(
     BuildContext context,
-    CreateTreatmentCubit cubit,
-    TextEditingController textEditingController,
+    CreateTreatmentBloc cubit,
   ) async {
     log('_onTap');
     final selectedDate = await showDatePicker(
@@ -52,8 +53,8 @@ class StartDateField extends StatelessWidget {
     );
     if (selectedDate != null) {
       final startDate = StartDate.dirty(selectedDate);
-      cubit.startDateChanged(startDate);
-      textEditingController.text =
+      cubit.add(StartDateChangedCreateTreatmentEvent(startDate));
+      _controller.text =
           startDate.value != null ? dateFormat.format(startDate.value!) : '';
     }
   }

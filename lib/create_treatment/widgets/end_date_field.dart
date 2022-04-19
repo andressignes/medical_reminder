@@ -1,10 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:medical_reminder/core/form_inputs/form_inputs.dart';
-import 'package:medical_reminder/create_treatment/cubit/create_treatment_cubit.dart';
+import 'package:medical_reminder/create_treatment/cubit/create_treatment_bloc.dart';
 import 'package:medical_reminder/l10n/l10n.dart';
 
 const _format = 'dd/MM/yyyy';
@@ -19,14 +17,16 @@ class EndDateField extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return BlocBuilder<CreateTreatmentCubit, CreateTreatmentState>(
+    return BlocBuilder<CreateTreatmentBloc, CreateTreatmentState>(
       builder: (context, state) {
+        _controller.text = state.endDate.value != null
+            ? dateFormat.format(state.endDate.value!)
+            : '';
         return TextFormField(
           controller: _controller,
           onTap: () => _onTap(
             context,
-            context.read<CreateTreatmentCubit>(),
-            _controller,
+            context.read<CreateTreatmentBloc>(),
           ),
           decoration: InputDecoration(
             labelText: l10n.endDateFieldLabel,
@@ -41,10 +41,8 @@ class EndDateField extends StatelessWidget {
 
   Future<void> _onTap(
     BuildContext context,
-    CreateTreatmentCubit cubit,
-    TextEditingController textEditingController,
+    CreateTreatmentBloc bloc,
   ) async {
-    log('_onTap');
     final selectedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -53,8 +51,8 @@ class EndDateField extends StatelessWidget {
     );
     if (selectedDate != null) {
       final endDate = EndDate.dirty(selectedDate);
-      cubit.endDateChanged(endDate);
-      textEditingController.text =
+      bloc.add(EndDateChangedCreateTreatmentEvent(endDate));
+      _controller.text =
           endDate.value != null ? dateFormat.format(endDate.value!) : '';
     }
   }

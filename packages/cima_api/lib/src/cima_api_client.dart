@@ -5,12 +5,9 @@ import 'package:http/http.dart';
 class CimaApiClient {
   CimaApiClient({
     Client? httpClient,
-    required String baseUrl,
-  })  : assert(baseUrl.isNotEmpty, 'baseUrl must not be empty'),
-        _baseUrl = baseUrl,
-        _client = httpClient ?? Client();
+  }) : _client = httpClient ?? Client();
 
-  final String _baseUrl;
+  final String _baseUrl = 'cima.aemps.es';
   static const _baseEndPoint = '/cima/rest';
   final Client _client;
 

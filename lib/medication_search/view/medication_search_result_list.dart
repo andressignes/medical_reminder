@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medical_reminder/l10n/l10n.dart';
 import 'package:medical_reminder/medication_search/medication_search.dart';
+import 'package:medical_reminder/medication_search/widgets/search_medication_delegate.dart';
 
 class SearchMedicationResultList extends StatelessWidget {
   const SearchMedicationResultList({Key? key}) : super(key: key);
