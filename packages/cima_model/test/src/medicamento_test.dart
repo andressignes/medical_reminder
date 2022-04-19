@@ -63,79 +63,98 @@ void main() {
 
     test('supports value comparisons', () {
       expect(
-          const Medicamento(
-                nregistro: '1',
+        const Medicamento(
+              nregistro: '1',
+              nombre: 'nombre',
+              pactivos: 'pactivos',
+              labtitular: 'labtitular',
+              estado: Estado(susp: 1, rev: 1, aut: 1),
+              cpresc: 'cpresc',
+              comerc: true,
+              receta: true,
+              conduc: true,
+              triangulo: true,
+              huerfano: true,
+              biosimilar: true,
+              ema: true,
+              psum: true,
+              docs: [
+                Documento(
+                  tipo: TipoDocumento.fichaTecnica,
+                  secc: true,
+                  url: 'url',
+                )
+              ],
+              fotos: [
+                Foto(
+                  tipo: FotoType.materialAcondicionamentoSecundario,
+                  url: 'url',
+                  fecha: 1,
+                )
+              ],
+              notas: true,
+              materialesInf: true,
+              atcs: [Atc(nombre: 'nombre', codigo: 'codigo')],
+              principiosActivos: [
+                PrincipioActivo(nombre: 'nombre', codigo: 'codigo')
+              ],
+              viasAdministracion: [Item(nombre: 'nombre', codigo: 'codigo')],
+              nosustituible: Item(nombre: 'nombre', codigo: 'codigo'),
+              presentaciones: [Presentacion(cn: '', nombre: 'nombre')],
+              formaFarmaceutica: Item(nombre: 'nombre', codigo: 'codigo'),
+              formaFarmaceuticaSimplificada: Item(
                 nombre: 'nombre',
-                pactivos: 'pactivos',
-                labtitular: 'labtitular',
-                estado: Estado(susp: 1, rev: 1, aut: 1),
-                cpresc: 'cpresc',
-                comerc: true,
-                receta: true,
-                conduc: true,
-                triangulo: true,
-                huerfano: true,
-                biosimilar: true,
-                ema: true,
-                psum: true,
-                docs: [
-                  Documento(
-                      tipo: TipoDocumento.fichaTecnica, secc: true, url: 'url',)
-                ],
-                fotos: [Foto(tipo: '', url: 'url', fecha: 1)],
-                notas: true,
-                materialesInf: true,
-                atcs: [Atc(nombre: 'nombre', codigo: 'codigo')],
-                principiosActivos: [
-                  PrincipioActivo(nombre: 'nombre', codigo: 'codigo')
-                ],
-                viasAdministracion: [Item(nombre: 'nombre', codigo: 'codigo')],
-                nosustituible: Item(nombre: 'nombre', codigo: 'codigo'),
-                presentaciones: [Presentacion(cn: '', nombre: 'nombre')],
-                formaFarmaceutica: Item(nombre: 'nombre', codigo: 'codigo'),
-                formaFarmaceuticaSimplificada: Item(
-                  nombre: 'nombre',
-                  codigo: 'codigo',
-                ),
-                dosis: 'dosis',
-              ) ==
-              const Medicamento(
-                nregistro: '1',
-                nombre: 'nombre',
-                pactivos: 'pactivos',
-                labtitular: 'labtitular',
-                estado: Estado(susp: 1, rev: 1, aut: 1),
-                cpresc: 'cpresc',
-                comerc: true,
-                receta: true,
-                conduc: true,
-                triangulo: true,
-                huerfano: true,
-                biosimilar: true,
-                ema: true,
-                psum: true,
-                docs: [
-                  Documento(
-                      tipo: TipoDocumento.fichaTecnica, secc: true, url: 'url',)
-                ],
-                fotos: [Foto(tipo: '', url: 'url', fecha: 1)],
-                notas: true,
-                materialesInf: true,
-                atcs: [Atc(nombre: 'nombre', codigo: 'codigo')],
-                principiosActivos: [
-                  PrincipioActivo(nombre: 'nombre', codigo: 'codigo')
-                ],
-                viasAdministracion: [Item(nombre: 'nombre', codigo: 'codigo')],
-                nosustituible: Item(nombre: 'nombre', codigo: 'codigo'),
-                presentaciones: [Presentacion(cn: '', nombre: 'nombre')],
-                formaFarmaceutica: Item(nombre: 'nombre', codigo: 'codigo'),
-                formaFarmaceuticaSimplificada: Item(
-                  nombre: 'nombre',
-                  codigo: 'codigo',
-                ),
-                dosis: 'dosis',
+                codigo: 'codigo',
               ),
-          isTrue,);
+              dosis: 'dosis',
+            ) ==
+            const Medicamento(
+              nregistro: '1',
+              nombre: 'nombre',
+              pactivos: 'pactivos',
+              labtitular: 'labtitular',
+              estado: Estado(susp: 1, rev: 1, aut: 1),
+              cpresc: 'cpresc',
+              comerc: true,
+              receta: true,
+              conduc: true,
+              triangulo: true,
+              huerfano: true,
+              biosimilar: true,
+              ema: true,
+              psum: true,
+              docs: [
+                Documento(
+                  tipo: TipoDocumento.fichaTecnica,
+                  secc: true,
+                  url: 'url',
+                )
+              ],
+              fotos: [
+                Foto(
+                  tipo: FotoType.materialAcondicionamentoSecundario,
+                  url: 'url',
+                  fecha: 1,
+                )
+              ],
+              notas: true,
+              materialesInf: true,
+              atcs: [Atc(nombre: 'nombre', codigo: 'codigo')],
+              principiosActivos: [
+                PrincipioActivo(nombre: 'nombre', codigo: 'codigo')
+              ],
+              viasAdministracion: [Item(nombre: 'nombre', codigo: 'codigo')],
+              nosustituible: Item(nombre: 'nombre', codigo: 'codigo'),
+              presentaciones: [Presentacion(cn: '', nombre: 'nombre')],
+              formaFarmaceutica: Item(nombre: 'nombre', codigo: 'codigo'),
+              formaFarmaceuticaSimplificada: Item(
+                nombre: 'nombre',
+                codigo: 'codigo',
+              ),
+              dosis: 'dosis',
+            ),
+        isTrue,
+      );
     });
 
     test('json serialization fromJson', () {
@@ -145,7 +164,9 @@ void main() {
     test('json serialization toJson', () {
       expect(obj.nregistro, json['nregistro']);
       expect(
-          obj.estado, Estado.fromJson(json['estado'] as Map<String, dynamic>),);
+        obj.estado,
+        Estado.fromJson(json['estado'] as Map<String, dynamic>),
+      );
       // expect(obj.toJson(), json);
     });
   });

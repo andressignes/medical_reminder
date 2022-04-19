@@ -1,4 +1,5 @@
 import 'package:cima_model/cima_model.dart';
+import 'package:cima_repository/cima_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/medication_detail/medication_detail.dart';
 
@@ -47,17 +48,23 @@ class _PhotoItemList extends StatelessWidget {
     required this.photos,
   }) : super(key: key);
   final List<Foto>? photos;
-  static const photoType = 'materialas';
 
   @override
   Widget build(BuildContext context) {
     if (photos == null ||
         photos!.isEmpty ||
-        photos!.indexWhere((photo) => photo.tipo == photoType) == -1) {
+        photos!.indexWhere(
+              (photo) =>
+                  photo.tipo == FotoType.materialAcondicionamentoSecundario,
+            ) ==
+            -1) {
       return Image.asset('assets/images/no_image.png');
     }
-    final urlPhoto =
-        photos!.firstWhere((photo) => photo.tipo == photoType).url!;
+    final urlPhoto = photos!
+        .firstWhere(
+          (photo) => photo.tipo == FotoType.materialAcondicionamentoSecundario,
+        )
+        .url!;
 
     return Hero(
       tag: urlPhoto,

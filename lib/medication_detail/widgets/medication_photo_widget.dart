@@ -1,4 +1,5 @@
 import 'package:cima_model/cima_model.dart' show Foto;
+import 'package:cima_repository/cima_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/medication_detail/widgets/image_fullscreen_page.dart';
 
@@ -8,14 +9,19 @@ class MedicationPhotoWidget extends StatelessWidget {
     required this.fotos,
   }) : super(key: key);
   final List<Foto>? fotos;
-  final _type = 'materialas';
 
   @override
   Widget build(BuildContext context) {
     if (fotos == null || fotos!.isEmpty) {
       return Image.asset('assets/images/no_image.png');
     }
-    final urlPhoto = fotos!.firstWhere((foto) => foto.tipo == _type).url ?? '';
+    final urlPhoto = fotos!
+            .firstWhere(
+              (foto) =>
+                  foto.tipo == FotoType.materialAcondicionamentoSecundario,
+            )
+            .url ??
+        '';
 
     return SizedBox(
       height: 150,

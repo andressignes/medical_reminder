@@ -95,5 +95,31 @@
   "medicationDetailPageCreateTreatmentButton": "Crear tratamiento",
   "@medicationDetailPageCreateTreatmentButton": {
     "description": "Texto del botón de crear tratamiento"
+  },
+  "medicationNameFieldLabel": "Nombre del medicamento",
+  "@medicationNameFieldLabel": {
+    "description": "Etiqueta del campo de nombre del medicamento"
+  },
+  "startDateFieldLabel": "Fecha de inicio",
+  "@startDateFieldLabel": {
+    "description": "Etiqueta del campo de fecha de inicio"
+  },
+  "endDateFieldLabel": "Fecha de fin",
+  "@endDateFieldLabel": {
+    "description": "Etiqueta del campo de fecha de fin"
+  },
+  "frequencyFieldLabel": "Frecuencia",
+  "@frequencyFieldLabel": {
+    "description": "Etiqueta del campo de frecuencia"
+  },
+  "everyXHoursFieldLabel": "Cada {hours} horas",
+  "@everyXHoursFieldLabel": {
+    "description": "Etiqueta del campo de cada X horas",
+    "placeholders": {
+      "hours": {
+        "type": "int",
+        "example": "12"
+      }
+    }
   }
 }

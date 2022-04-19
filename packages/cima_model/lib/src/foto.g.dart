@@ -7,7 +7,7 @@ part of 'foto.dart';
 // **************************************************************************
 
 Foto _$FotoFromJson(Map<String, dynamic> json) => Foto(
-      tipo: json['tipo'] as String?,
+      tipo: $enumDecodeNullable(_$FotoTypeEnumMap, json['tipo']),
       url: json['url'] as String?,
       fecha: json['fecha'] as int?,
     );
@@ -21,8 +21,13 @@ Map<String, dynamic> _$FotoToJson(Foto instance) {
     }
   }
 
-  writeNotNull('tipo', instance.tipo);
+  writeNotNull('tipo', _$FotoTypeEnumMap[instance.tipo]);
   writeNotNull('url', instance.url);
   writeNotNull('fecha', instance.fecha);
   return val;
 }
+
+const _$FotoTypeEnumMap = {
+  FotoType.materialAcondicionamentoSecundario: 'materialas',
+  FotoType.formaFarmaceutica: 'formafarmac',
+};

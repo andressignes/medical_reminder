@@ -79,6 +79,15 @@ class Medicamento extends Equatable {
     return docs!.firstWhere((d) => d.tipo == type);
   }
 
+  Foto? get fotoMaterialAS => getFoto(FotoType.materialAcondicionamentoSecundario);
+  Foto? get fotoFormaFarmaceutica => getFoto(FotoType.formaFarmaceutica);
+
+  Foto? getFoto(FotoType type) {
+    if (fotos == null) return null;
+    if (fotos!.indexWhere((element) => element.tipo == type) == -1) return null;
+    return fotos!.firstWhere((d) => d.tipo == type);
+  }
+
   @override
   List<Object?> get props => [
         nregistro,

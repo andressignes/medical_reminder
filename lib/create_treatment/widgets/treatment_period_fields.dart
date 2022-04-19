@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:medical_reminder/create_treatment/widgets/end_date_field.dart';
+import 'package:medical_reminder/create_treatment/widgets/frequency_field.dart';
+import 'package:medical_reminder/create_treatment/widgets/start_date_field.dart';
 
 class TreatmentPeriodFields extends StatelessWidget {
   const TreatmentPeriodFields({Key? key}) : super(key: key);
@@ -6,19 +9,11 @@ class TreatmentPeriodFields extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Fecha Inicio',
-          style: Theme.of(context).textTheme.bodyLarge,
-        ),
-        Text(
-          'Fecha Fin',
-          style: Theme.of(context).textTheme.bodyLarge,
-        ),
-        Text(
-          'Frecuencia',
-          style: Theme.of(context).textTheme.bodyLarge,
-        ),
+        StartDateField(),
+        EndDateField(),
+        const FrequencyField(),
       ],
     );
   }

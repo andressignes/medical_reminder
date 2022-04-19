@@ -15,7 +15,7 @@ void main() {
       ) as Map<String, dynamic>;
 
       obj = Foto(
-        tipo: json['tipo'] as String,
+        tipo: FotoType.materialAcondicionamentoSecundario,
         url: json['url'] as String,
         fecha: json['fecha'] as int,
       );
@@ -28,12 +28,12 @@ void main() {
     test('supports value comparisons', () {
       expect(
         const Foto(
-              tipo: 'tipo',
+              tipo: FotoType.materialAcondicionamentoSecundario,
               url: 'url',
               fecha: 1,
             ) ==
             const Foto(
-              tipo: 'tipo',
+              tipo: FotoType.materialAcondicionamentoSecundario,
               url: 'url',
               fecha: 1,
             ),
