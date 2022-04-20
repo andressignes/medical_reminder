@@ -6,6 +6,7 @@ import 'package:form_inputs/form_inputs.dart';
 import 'package:intl/intl.dart';
 import 'package:medical_reminder/app/app.dart';
 import 'package:medical_reminder/profile/cubit/profile_cubit.dart';
+import 'package:medical_reminder/l10n/l10n.dart';
 
 class BirthDateInput extends StatelessWidget {
   BirthDateInput({Key? key}) : super(key: key);
@@ -15,7 +16,8 @@ class BirthDateInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log(context.read<AppBloc>().state.user.birthDate.toString());
+    final l10n = context.l10n;
+
     textController.text = context.read<AppBloc>().state.user.birthDate != null
         ? dateFormat.format(context.read<AppBloc>().state.user.birthDate!)
         : '';
@@ -28,6 +30,9 @@ class BirthDateInput extends StatelessWidget {
             textController,
           ),
           controller: textController,
+          decoration: InputDecoration(
+            labelText: l10n.birthDateFieldLabel,
+          ),
         );
       },
     );

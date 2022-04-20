@@ -18,9 +18,12 @@ class SingUpButton extends StatelessWidget {
             : ElevatedButton(
                 key: const Key('signUpForm_continue_button'),
                 onPressed: state.status.isValidated
-                    ? () => context
-                        .read<SignUpCubit>()
-                        .signUpWithEmailAndPasswordPressed()
+                    ? () {
+                        context
+                            .read<SignUpCubit>()
+                            .signUpWithEmailAndPasswordPressed();
+                        Navigator.of(context).pop();
+                      }
                     : null,
                 child: Text(l10n.createAccountPageTitle),
               );

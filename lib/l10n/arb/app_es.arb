@@ -133,5 +133,9 @@
   "invalidEndDate": "Fecha de fin inválida",
   "@invalidEndDate": {
     "description": "Mensaje de error para fecha de fin inválida"
+  },
+  "birthDateFieldLabel": "Fecha de nacimiento",
+  "@birthDateFieldLabel": {
+    "description": "Etiqueta del campo de fecha de nacimiento"
   }
 }

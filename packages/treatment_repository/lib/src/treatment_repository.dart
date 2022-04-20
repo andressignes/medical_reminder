@@ -18,4 +18,8 @@ class TreatmentRepository {
 
   Stream<List<Treatment>> getTreatments(String userId) =>
       _dataSource.getTreatments(userId);
+
+  Future<List<Treatment>> getTreatments2(String userId) =>
+      _dataSource.getTreatments2(userId);
+
 }

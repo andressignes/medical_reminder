@@ -73,7 +73,7 @@ class AuthenticationRepository {
         password: password,
       );
       if (userCredential.user != null) {
-        await _userDataSource.updateUser(userCredential.user!.toUser);
+        await _userDataSource.addUser(userCredential.user!.toUser);
       }
     } on FirebaseAuthException catch (e) {
       throw SignUpWithEmailAndPasswordFailure.fromCode(e.code);

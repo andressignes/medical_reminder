@@ -11,12 +11,12 @@ class TreatmentSchedulePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = context.select((AppBloc bloc) => bloc.state.user);
-    return BlocProvider(
-      create: (context) => TreatmentScheduleBloc(
-        treatmentRepository: context.read<TreatmentRepository>(),
-        cimaRepository: context.read<CimaRepository>(),
-      )..add(TreatmentScheduleSubscriptionRequested(userId: user.id)),
-      child: const TreatmentScheduleView(),
-    );
+    // return ..add(TreatmentScheduleSubscriptionRequested(userId: user.id)),
+    context.read<TreatmentScheduleBloc>().add(
+          TreatmentScheduleSubscriptionRequested(
+            userId: user.id,
+          ),
+        );
+    return const TreatmentScheduleView();
   }
 }

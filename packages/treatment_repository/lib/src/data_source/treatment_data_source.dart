@@ -102,6 +102,31 @@ class TreatmentDataSource {
     }
   }
 
+  Future<List<Treatment>> getTreatments2(String userId) async {
+    final treatments = List<Treatment>.empty(growable: true);
+    try {
+      final snap = await _treatmentsCollection
+          .withConverter(
+              fromFirestore: _fromFirestore, toFirestore: _toFirestore)
+          .where('userId', isEqualTo: userId)
+          .get();
+      snap.docs.map(
+        (doc) {
+          if (doc.data() != null) {
+            treatments.add(doc.data()!);
+          }
+        },
+      ).toList();
+      return treatments;
+    } on cloud_firestore.FirebaseException catch (e) {
+      log('FireStore Exception while adding user: ${e.code} ${e.message}');
+      return treatments;
+    } catch (e) {
+      log('Unknown Exception while adding user: $e');
+      return treatments;
+    }
+  }
+
   Treatment? _fromFirestore(
     cloud_firestore.DocumentSnapshot<Map<String, dynamic>> snapshot,
     cloud_firestore.SnapshotOptions? options,

@@ -32,8 +32,11 @@ class TreatmentScheduleBloc
     emit(state.copyWith(status: TreatmentScheduleStatus.loading));
 
     final treatments =
-        await _treatmentRepository.getTreatments(event.userId).first;
+        await _treatmentRepository.getTreatments2(event.userId);
     log('treatments: $treatments');
+    emit(
+      state.copyWith(scheduleItems: List<ScheduleItem>.empty()),
+    );
     for (final treatment in treatments) {
       final medication = await _cimaRepository.getMedicamento(
           nregistro: treatment.medicationId);
