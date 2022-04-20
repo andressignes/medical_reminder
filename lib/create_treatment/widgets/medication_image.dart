@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medical_reminder/create_treatment/cubit/create_treatment_bloc.dart';
+import 'package:medical_reminder/create_treatment/create_treatment.dart';
 
 class MedicationImage extends StatelessWidget {
   const MedicationImage({Key? key}) : super(key: key);

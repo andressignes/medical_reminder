@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medical_reminder/core/form_inputs/form_inputs.dart';
-import 'package:medical_reminder/create_treatment/cubit/create_treatment_bloc.dart';
+import 'package:medical_reminder/create_treatment/form_inputs/form_inputs.dart';
+import 'package:medical_reminder/create_treatment/create_treatment.dart';
 import 'package:medical_reminder/l10n/l10n.dart';
 
 class FrequencyField extends StatelessWidget {
@@ -28,7 +28,6 @@ class FrequencyField extends StatelessWidget {
               .toList(),
           onChanged: (value) {
             if (value == null) return;
-            log('Frequency changed to $value');
             context.read<CreateTreatmentBloc>().add(
                   FrequencyChangedCreateTreatmentEvent(
                     Frequency.dirty(value: value),

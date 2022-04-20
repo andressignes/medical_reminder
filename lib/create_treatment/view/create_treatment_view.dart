@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medical_reminder/create_treatment/cubit/create_treatment_bloc.dart';
-import 'package:medical_reminder/create_treatment/widgets/add_medication_button.dart';
-import 'package:medical_reminder/create_treatment/widgets/widgets.dart';
+import 'package:formz/formz.dart';
+import 'package:medical_reminder/create_treatment/create_treatment.dart';
+import 'package:medical_reminder/create_treatment/widgets/medication_widget.dart';
 import 'package:medical_reminder/l10n/l10n.dart';
 
 class CreateTreatmentView extends StatelessWidget {
@@ -11,60 +11,26 @@ class CreateTreatmentView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.medicationDetailPageCreateTreatmentButton),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.save),
-            onPressed: () {
-              context
-                  .read<CreateTreatmentBloc>()
-                  .add(SubmitCreateTreatmentEvent());
-              Navigator.of(context).pop();
-              context
-                  .read<CreateTreatmentBloc>()
-                  .add(ClearCreateTreatmentEvent());
-
-            },
-          ),
+        actions: const [
+          SaveTreatmentButton(),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: size.width * 0.04,
-            vertical: size.height * 0.02,
-          ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: size.width * 0.04,
+          vertical: size.height * 0.02,
+        ),
+        child: SingleChildScrollView(
           child: Column(
             children: [
-              const MedicationNameField(),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const <Widget>[
-                        TreatmentPeriodFields(),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Column(
-                      children: const [
-                        MedicationImage(),
-                        MedicationDetailButton(),
-                        AddMedicationButton(),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+              const MedicationWidget(),
+              StartDateField(),
+              EndDateField(),
+              const FrequencyField(),
             ],
           ),
         ),

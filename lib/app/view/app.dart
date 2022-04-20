@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:medical_reminder/app/app.dart';
-import 'package:medical_reminder/create_treatment/cubit/create_treatment_bloc.dart';
+import 'package:medical_reminder/create_treatment/bloc/create_treatment_bloc.dart';
 import 'package:medical_reminder/l10n/l10n.dart';
 import 'package:medical_reminder/medication_search/bloc/medication_search_bloc.dart';
 import 'package:treatment_repository/treatment_repository.dart';

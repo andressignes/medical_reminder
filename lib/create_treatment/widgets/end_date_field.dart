@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
 import 'package:intl/intl.dart';
-import 'package:medical_reminder/core/form_inputs/form_inputs.dart';
-import 'package:medical_reminder/create_treatment/cubit/create_treatment_bloc.dart';
+import 'package:medical_reminder/create_treatment/create_treatment.dart';
+
 import 'package:medical_reminder/l10n/l10n.dart';
 
 const _format = 'dd/MM/yyyy';
@@ -17,7 +18,19 @@ class EndDateField extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return BlocBuilder<CreateTreatmentBloc, CreateTreatmentState>(
+    return BlocConsumer<CreateTreatmentBloc, CreateTreatmentState>(
+      listener: (context, state) {
+        if (state.endDate.status == FormzInputStatus.invalid) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(
+                content: Text(l10n.invalidEndDate),
+                backgroundColor: Colors.redAccent,
+              ),
+            );
+        }
+      },
       builder: (context, state) {
         _controller.text = state.endDate.value != null
             ? dateFormat.format(state.endDate.value!)
@@ -50,7 +63,10 @@ class EndDateField extends StatelessWidget {
       lastDate: DateTime.now().add(const Duration(days: 15)),
     );
     if (selectedDate != null) {
-      final endDate = EndDate.dirty(selectedDate);
+      final endDate = EndDate.dirty(
+        value: selectedDate,
+        startDate: bloc.state.startDate.value,
+      );
       bloc.add(EndDateChangedCreateTreatmentEvent(endDate));
       _controller.text =
           endDate.value != null ? dateFormat.format(endDate.value!) : '';

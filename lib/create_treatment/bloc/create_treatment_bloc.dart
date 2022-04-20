@@ -2,13 +2,13 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:cima_repository/cima_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
-import 'package:medical_reminder/core/form_inputs/treatment/treatment.dart';
+import 'package:medical_reminder/create_treatment/form_inputs/form_inputs.dart';
 import 'package:treatment_repository/treatment_repository.dart';
 
 part 'create_treatment_state.dart';
+
 part 'create_treatment_event.dart';
 
 class CreateTreatmentBloc
@@ -39,7 +39,6 @@ class CreateTreatmentBloc
     );
   }
 
-
   FutureOr<void> _onStartDateChanged(
     StartDateChangedCreateTreatmentEvent event,
     Emitter<CreateTreatmentState> emit,
@@ -47,6 +46,12 @@ class CreateTreatmentBloc
     emit(
       state.copyWith(
         startDate: event.date,
+        status: Formz.validate([
+          state.medication,
+          event.date,
+          state.endDate,
+          state.frequency,
+        ]),
       ),
     );
   }
@@ -58,6 +63,12 @@ class CreateTreatmentBloc
     emit(
       state.copyWith(
         endDate: event.date,
+        status: Formz.validate([
+          state.medication,
+          state.startDate,
+          event.date,
+          state.frequency,
+        ]),
       ),
     );
   }
@@ -68,6 +79,12 @@ class CreateTreatmentBloc
   ) {
     final s = state.copyWith(
       frequency: event.frequency,
+      status: Formz.validate([
+        state.medication,
+        state.startDate,
+        state.endDate,
+        event.frequency,
+      ]),
     );
     emit(s);
   }
@@ -79,6 +96,12 @@ class CreateTreatmentBloc
     emit(
       state.copyWith(
         medication: event.medication,
+        status: Formz.validate([
+          event.medication,
+          state.startDate,
+          state.endDate,
+          state.frequency,
+        ]),
       ),
     );
   }
@@ -105,7 +128,10 @@ class CreateTreatmentBloc
     }
   }
 
-  FutureOr<void> _onClear(ClearCreateTreatmentEvent event, Emitter<CreateTreatmentState> emit) {
+  FutureOr<void> _onClear(
+    ClearCreateTreatmentEvent event,
+    Emitter<CreateTreatmentState> emit,
+  ) {
     emit(const CreateTreatmentState(userId: ''));
   }
 }

@@ -2,12 +2,12 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
 import 'package:intl/intl.dart';
-import 'package:medical_reminder/core/form_inputs/form_inputs.dart';
-import 'package:medical_reminder/create_treatment/cubit/create_treatment_bloc.dart';
+import 'package:medical_reminder/create_treatment/create_treatment.dart';
 import 'package:medical_reminder/l10n/l10n.dart';
 
-const _format = 'dd/MM/yyyy';
+const _format = 'dd/MM/yyyy HH:mm';
 
 class StartDateField extends StatelessWidget {
   StartDateField({Key? key}) : super(key: key);
@@ -18,7 +18,19 @@ class StartDateField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    return BlocBuilder<CreateTreatmentBloc, CreateTreatmentState>(
+    return BlocConsumer<CreateTreatmentBloc, CreateTreatmentState>(
+      listener: (context, state) {
+        if (state.startDate.status == FormzInputStatus.invalid) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(
+                content: Text(l10n.invalidStartDate),
+                backgroundColor: Colors.redAccent,
+              ),
+            );
+        }
+      },
       builder: (context, state) {
         _controller.text = state.startDate.value != null
             ? dateFormat.format(state.startDate.value!)
@@ -31,7 +43,7 @@ class StartDateField extends StatelessWidget {
           ),
           decoration: InputDecoration(
             labelText: l10n.startDateFieldLabel,
-            hintText: 'dd/mm/yyyy',
+            hintText: 'dd/mm/yyyy hh:mm',
             border: InputBorder.none,
           ),
           keyboardType: TextInputType.datetime,
@@ -42,9 +54,8 @@ class StartDateField extends StatelessWidget {
 
   Future<void> _onTap(
     BuildContext context,
-    CreateTreatmentBloc cubit,
+    CreateTreatmentBloc bloc,
   ) async {
-    log('_onTap');
     final selectedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -52,10 +63,24 @@ class StartDateField extends StatelessWidget {
       lastDate: DateTime.now().add(const Duration(days: 15)),
     );
     if (selectedDate != null) {
-      final startDate = StartDate.dirty(selectedDate);
-      cubit.add(StartDateChangedCreateTreatmentEvent(startDate));
-      _controller.text =
-          startDate.value != null ? dateFormat.format(startDate.value!) : '';
+      final selectedTime = await showTimePicker(
+        context: context,
+        initialTime: TimeOfDay.now(),
+      );
+      if (selectedTime != null) {
+        final startDate = StartDate.dirty(
+          value: selectedDate.add(
+            Duration(
+              hours: selectedTime.hour,
+              minutes: selectedTime.minute,
+            ),
+          ),
+          endDate: bloc.state.endDate.value,
+        );
+        bloc.add(StartDateChangedCreateTreatmentEvent(startDate));
+        _controller.text =
+            startDate.value != null ? dateFormat.format(startDate.value!) : '';
+      }
     }
   }
 }

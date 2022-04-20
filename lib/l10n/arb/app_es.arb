@@ -125,5 +125,13 @@
   "addMedicationButton": "Agregar medicamento",
   "@addMedicationButton": {
     "description": "Texto del botón de agregar medicamento"
+  },
+  "invalidStartDate": "Fecha de inicio inválida",
+  "@invalidStartDate": {
+    "description": "Mensaje de error para fecha de inicio inválida"
+  },
+  "invalidEndDate": "Fecha de fin inválida",
+  "@invalidEndDate": {
+    "description": "Mensaje de error para fecha de fin inválida"
   }
 }

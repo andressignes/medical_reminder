@@ -2,11 +2,8 @@ import 'package:cima_repository/cima_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medical_reminder/app/bloc/app_bloc.dart';
-import 'package:medical_reminder/core/form_inputs/form_inputs.dart';
-import 'package:medical_reminder/create_treatment/cubit/create_treatment_bloc.dart';
-import 'package:medical_reminder/create_treatment/view/create_treatment_view.dart';
-import 'package:medical_reminder/medication_search/medication_search.dart';
-import 'package:treatment_repository/treatment_repository.dart';
+import 'package:medical_reminder/create_treatment/create_treatment.dart';
+import 'package:medical_reminder/create_treatment/form_inputs/form_inputs.dart';
 
 class CreateTreatmentPage extends StatelessWidget {
   const CreateTreatmentPage({
@@ -34,6 +31,12 @@ class CreateTreatmentPage extends StatelessWidget {
                 : const MedicationFormInput.pure(),
           ),
         );
-    return const CreateTreatmentView();
+    return WillPopScope(
+      onWillPop: () {
+        context.read<CreateTreatmentBloc>().add(ClearCreateTreatmentEvent());
+        return Future.value(true);
+      },
+      child: const CreateTreatmentView(),
+    );
   }
 }

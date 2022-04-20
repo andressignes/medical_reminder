@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medical_reminder/create_treatment/cubit/create_treatment_bloc.dart';
+import 'package:medical_reminder/create_treatment/create_treatment.dart';
 
 class MedicationNameField extends StatelessWidget {
   const MedicationNameField({Key? key}) : super(key: key);
@@ -11,7 +11,6 @@ class MedicationNameField extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return BlocBuilder<CreateTreatmentBloc, CreateTreatmentState>(
       builder: (context, state) {
-        log(state.toString());
         return Padding(
           padding: EdgeInsets.symmetric(vertical: size.height * 0.01),
           child: Column(
