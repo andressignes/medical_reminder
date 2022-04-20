@@ -58,3 +58,8 @@ class SubmitCreateTreatmentEvent extends CreateTreatmentEvent {
   @override
   List<Object> get props => [];
 }
+
+class ClearCreateTreatmentEvent extends CreateTreatmentEvent {
+  @override
+  List<Object> get props => [];
+}

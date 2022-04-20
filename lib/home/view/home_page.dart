@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medical_reminder/app/bloc/app_bloc.dart';
+import 'package:medical_reminder/create_treatment/view/create_treatment_page.dart';
 import 'package:medical_reminder/l10n/l10n.dart';
 import 'package:medical_reminder/medication_search/medication_search.dart';
 import 'package:medical_reminder/profile/view/profile_page.dart';
@@ -16,7 +17,7 @@ class HomePage extends StatelessWidget {
     final l10n = context.l10n;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: Text(l10n.medicalReminderAppBarTitle),
         actions: <Widget>[
           IconButton(
             key: const Key('homePage_profile_iconButton'),
@@ -32,9 +33,9 @@ class HomePage extends StatelessWidget {
         tooltip: l10n.searchMedicationFieldLabel,
         onPressed: () => Navigator.push<void>(
           context,
-          MedicationSearchPage.route(),
+          CreateTreatmentPage.route(),
         ),
-        child: const Icon(Icons.search),
+        child: const Icon(Icons.medication),
       ),
     );
   }

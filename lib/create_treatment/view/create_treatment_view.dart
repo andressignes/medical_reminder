@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medical_reminder/create_treatment/cubit/create_treatment_bloc.dart';
+import 'package:medical_reminder/create_treatment/widgets/add_medication_button.dart';
 import 'package:medical_reminder/create_treatment/widgets/widgets.dart';
 import 'package:medical_reminder/l10n/l10n.dart';
 
@@ -22,6 +23,11 @@ class CreateTreatmentView extends StatelessWidget {
               context
                   .read<CreateTreatmentBloc>()
                   .add(SubmitCreateTreatmentEvent());
+              Navigator.of(context).pop();
+              context
+                  .read<CreateTreatmentBloc>()
+                  .add(ClearCreateTreatmentEvent());
+
             },
           ),
         ],
@@ -53,6 +59,7 @@ class CreateTreatmentView extends StatelessWidget {
                       children: const [
                         MedicationImage(),
                         MedicationDetailButton(),
+                        AddMedicationButton(),
                       ],
                     ),
                   ),

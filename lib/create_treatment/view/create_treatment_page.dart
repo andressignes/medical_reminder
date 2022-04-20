@@ -5,6 +5,7 @@ import 'package:medical_reminder/app/bloc/app_bloc.dart';
 import 'package:medical_reminder/core/form_inputs/form_inputs.dart';
 import 'package:medical_reminder/create_treatment/cubit/create_treatment_bloc.dart';
 import 'package:medical_reminder/create_treatment/view/create_treatment_view.dart';
+import 'package:medical_reminder/medication_search/medication_search.dart';
 import 'package:treatment_repository/treatment_repository.dart';
 
 class CreateTreatmentPage extends StatelessWidget {
@@ -25,16 +26,14 @@ class CreateTreatmentPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CreateTreatmentBloc(
-        treatmentRepository: context.read<TreatmentRepository>(),
-      )..add(
+    context.read<CreateTreatmentBloc>().add(
           InitializeCreateTreatmentEvent(
-            userId: context.read<AppBloc>().state.user.id,
-            medication: MedicationFormInput.dirty(value: medicamento!),
+            userId: context.select((AppBloc bloc) => bloc.state.user).id,
+            medication: medicamento != null
+                ? MedicationFormInput.dirty(value: medicamento!)
+                : const MedicationFormInput.pure(),
           ),
-        ),
-      child: const CreateTreatmentView(),
-    );
+        );
+    return const CreateTreatmentView();
   }
 }

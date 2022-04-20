@@ -1,6 +1,9 @@
 import 'package:cima_model/cima_model.dart';
 import 'package:cima_repository/cima_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medical_reminder/core/form_inputs/form_inputs.dart';
+import 'package:medical_reminder/create_treatment/cubit/create_treatment_bloc.dart';
 import 'package:medical_reminder/medication_detail/medication_detail.dart';
 
 class MedicationSearchItemResultList extends StatelessWidget {
@@ -15,10 +18,21 @@ class MedicationSearchItemResultList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.push<void>(
-        context,
-        MedicationDetailPage.route(medication: _medication),
-      ),
+      onTap: () {
+        context.read<CreateTreatmentBloc>().add(
+              MedicationChangedCreteTreatmentEvent(
+                MedicationFormInput.dirty(
+                  value: _medication,
+                ),
+              ),
+            );
+        Navigator.of(context).pop();
+      //     Navigator.push<void>(
+      //   context,
+      //   MedicationDetailPage.route(medication: _medication),
+      // )
+      }
+      ,
       child: Card(
         child: Row(
           children: [

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:cima_repository/cima_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 import 'package:medical_reminder/core/form_inputs/treatment/treatment.dart';
@@ -21,6 +22,7 @@ class CreateTreatmentBloc
     on<EndDateChangedCreateTreatmentEvent>(_onEndDateChanged);
     on<FrequencyChangedCreateTreatmentEvent>(_onFrequencyChanged);
     on<SubmitCreateTreatmentEvent>(_onSubmit);
+    on<ClearCreateTreatmentEvent>(_onClear);
   }
 
   final TreatmentRepository treatmentRepository;
@@ -36,6 +38,7 @@ class CreateTreatmentBloc
       ),
     );
   }
+
 
   FutureOr<void> _onStartDateChanged(
     StartDateChangedCreateTreatmentEvent event,
@@ -100,5 +103,9 @@ class CreateTreatmentBloc
       log('Error: $e');
       emit(state.copyWith(status: FormzStatus.submissionFailure));
     }
+  }
+
+  FutureOr<void> _onClear(ClearCreateTreatmentEvent event, Emitter<CreateTreatmentState> emit) {
+    emit(const CreateTreatmentState(userId: ''));
   }
 }

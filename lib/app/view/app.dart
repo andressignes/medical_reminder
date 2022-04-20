@@ -12,7 +12,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:medical_reminder/app/app.dart';
+import 'package:medical_reminder/create_treatment/cubit/create_treatment_bloc.dart';
 import 'package:medical_reminder/l10n/l10n.dart';
+import 'package:medical_reminder/medication_search/bloc/medication_search_bloc.dart';
 import 'package:treatment_repository/treatment_repository.dart';
 
 class App extends StatelessWidget {
@@ -52,17 +54,31 @@ class AppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => MedicationSearchBloc(
+            cimaRepository: context.read<CimaRepository>(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => CreateTreatmentBloc(
+            treatmentRepository: context.read<TreatmentRepository>(),
+          ),
+        )
       ],
-      supportedLocales: AppLocalizations.supportedLocales,
-      home: FlowBuilder<AppStatus>(
-        state: context.select((AppBloc bloc) => bloc.state.status),
-        onGeneratePages: onGenerateAppViewPages,
+      child: MaterialApp(
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: FlowBuilder<AppStatus>(
+          state: context.select((AppBloc bloc) => bloc.state.status),
+          onGeneratePages: onGenerateAppViewPages,
+        ),
       ),
     );
   }

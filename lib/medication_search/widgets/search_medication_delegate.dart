@@ -19,6 +19,13 @@ class SearchMedicationDelegate extends SearchDelegate<Medicamento?> {
           query = '';
         },
       ),
+      IconButton(
+        icon: const Icon(Icons.camera_alt),
+        onPressed: () {
+          // TODO(asignes): open camera to scan code bar
+          query = '';
+        },
+      ),
     ];
   }
 
@@ -34,15 +41,14 @@ class SearchMedicationDelegate extends SearchDelegate<Medicamento?> {
 
   @override
   Widget buildResults(BuildContext context) {
+    log('buildResults');
     return const SizedBox.shrink();
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    log('buildResults $query');
     if (query.length > 3) {
       medicationSearchBloc.add(MedicationsFetched(name: query));
-
       return BlocBuilder<MedicationSearchBloc, MedicationSearchState>(
         bloc: medicationSearchBloc,
         builder: (context, state) {
