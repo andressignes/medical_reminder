@@ -101,7 +101,9 @@ class TreatmentDataSource {
     try {
       final snap = await _treatmentsCollection
           .withConverter(
-              fromFirestore: _fromFirestore, toFirestore: _toFirestore,)
+            fromFirestore: _fromFirestore,
+            toFirestore: _toFirestore,
+          )
           .where('userId', isEqualTo: userId)
           .get();
       snap.docs.map(
@@ -125,6 +127,7 @@ class TreatmentDataSource {
     cloud_firestore.DocumentSnapshot<Map<String, dynamic>> snapshot,
     cloud_firestore.SnapshotOptions? options,
   ) {
+    if (!snapshot.exists || snapshot.data() == null) return null;
     return Treatment.fromJson(snapshot.data()!);
   }
 
@@ -132,6 +135,7 @@ class TreatmentDataSource {
     Treatment? value,
     cloud_firestore.SetOptions? options,
   ) {
-    return value!.toJson();
+    if (value == null) return {};
+    return value.toJson();
   }
 }
