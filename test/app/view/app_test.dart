@@ -6,17 +6,28 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:authentication_repository/authentication_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:medical_reminder/app/app.dart';
+import 'package:mocktail/mocktail.dart';
+
+class FirebaseAuthMock extends Mock implements FirebaseAuth {}
+
+class UserDataSourceMock extends Mock implements UserDataSource {}
+
 
 void main() {
   group('App', () {
-    testWidgets('renders CounterPage', (tester) async {
+    final firebaseAuth = FirebaseAuthMock();
+    final userDataSource = UserDataSourceMock();
+    testWidgets('renders Home Page', (tester) async {
       await tester.pumpWidget(
         App(
-          authenticationRepository: AuthenticationRepository(),
+          authenticationRepository: AuthenticationRepository(
+              firebaseAuth: firebaseAuth,
+              userDataSource: userDataSource,
         ),
-      );
+      ),);
       // expect(find.byType(CounterPage), findsOneWidget);
     });
   });
