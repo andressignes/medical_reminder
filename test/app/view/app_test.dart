@@ -8,7 +8,6 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:medical_reminder/app/app.dart';
 import 'package:mocktail/mocktail.dart';
 
 class FirebaseAuthMock extends Mock implements FirebaseAuth {}
