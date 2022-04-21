@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:dose_repository/dose_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 import 'package:medical_reminder/create_treatment/form_inputs/form_inputs.dart';
@@ -14,8 +15,10 @@ part 'create_treatment_event.dart';
 class CreateTreatmentBloc
     extends Bloc<CreateTreatmentEvent, CreateTreatmentState> {
   CreateTreatmentBloc({
+    required this.userId,
     required this.treatmentRepository,
-  }) : super(const CreateTreatmentState(userId: '')) {
+    required this.doseRepository,
+  }) : super(const CreateTreatmentState()) {
     on<InitializeCreateTreatmentEvent>(_onInitialize);
     on<MedicationChangedCreteTreatmentEvent>(_onMedicationChanged);
     on<StartDateChangedCreateTreatmentEvent>(_onStartDateChanged);
@@ -26,6 +29,8 @@ class CreateTreatmentBloc
   }
 
   final TreatmentRepository treatmentRepository;
+  final DoseRepository doseRepository;
+  final String userId;
 
   FutureOr<void> _onInitialize(
     InitializeCreateTreatmentEvent event,
@@ -112,15 +117,25 @@ class CreateTreatmentBloc
   ) async {
     try {
       log('submit');
-      await treatmentRepository.addTreatment(
-        Treatment(
-          userId: state.userId,
-          medicationId: state.medication.value!.nregistro!,
-          startDate: state.startDate.value!,
-          endDate: state.endDate.value != null ? state.endDate.value! : null,
-          frequencyHours: state.frequency.value ?? 0,
-        ),
+      final treatment = Treatment(
+        userId: userId,
+        medicationId: state.medication.value!.nregistro!,
+        startDate: state.startDate.value!,
+        endDate: state.endDate.value != null ? state.endDate.value! : null,
+        frequencyHours: state.frequency.value ?? 0,
       );
+      await treatmentRepository.addTreatment(treatment);
+      var doseDateTime = treatment.startDate;
+      while (doseDateTime.isBefore(treatment.endDate!)) {
+        final dose = Dose(
+          sheduledDateTime: doseDateTime,
+          treatmentId: treatment.id,
+        );
+        await doseRepository.addDose(dose);
+        doseDateTime = doseDateTime.add(
+          Duration(hours: treatment.frequencyHours),
+        );
+      }
       emit(state.copyWith(status: FormzStatus.submissionSuccess));
     } on Exception catch (e) {
       log('Error: $e');
@@ -132,6 +147,6 @@ class CreateTreatmentBloc
     ClearCreateTreatmentEvent event,
     Emitter<CreateTreatmentState> emit,
   ) {
-    emit(const CreateTreatmentState(userId: ''));
+    emit(const CreateTreatmentState());
   }
 }

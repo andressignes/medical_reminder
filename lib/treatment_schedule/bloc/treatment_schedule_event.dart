@@ -5,10 +5,8 @@ abstract class TreatmentScheduleEvent extends Equatable {
 }
 
 class TreatmentScheduleSubscriptionRequested extends TreatmentScheduleEvent {
-  const TreatmentScheduleSubscriptionRequested({required this.userId});
-
-  final String userId;
+  const TreatmentScheduleSubscriptionRequested();
 
   @override
-  List<Object?> get props => [userId];
+  List<Object?> get props => [];
 }

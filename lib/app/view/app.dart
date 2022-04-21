@@ -7,6 +7,7 @@
 
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cima_repository/cima_repository.dart';
+import 'package:dose_repository/dose_repository.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,6 +40,7 @@ class App extends StatelessWidget {
           ),
         ),
         RepositoryProvider(create: (_) => TreatmentRepository()),
+        RepositoryProvider(create: (_) => DoseRepository()),
       ],
       child: BlocProvider<AppBloc>(
         create: (context) => AppBloc(
@@ -64,12 +66,16 @@ class AppView extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => CreateTreatmentBloc(
+            userId: context.read<AppBloc>().state.user.id,
             treatmentRepository: context.read<TreatmentRepository>(),
+            doseRepository: context.read<DoseRepository>(),
           ),
         ),
         BlocProvider(
           create: (context) => TreatmentScheduleBloc(
+            userId: context.read<AppBloc>().state.user.id,
             treatmentRepository: context.read<TreatmentRepository>(),
+            doseRepository: context.read<DoseRepository>(),
             cimaRepository: context.read<CimaRepository>(),
           ),
         ),
