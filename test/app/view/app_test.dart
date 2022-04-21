@@ -17,18 +17,18 @@ class UserDataSourceMock extends Mock implements UserDataSource {}
 
 void main() {
   group('App', () {
-    final firebaseAuth = FirebaseAuthMock();
-    final userDataSource = UserDataSourceMock();
-    testWidgets('renders Home Page', (tester) async {
-      await tester.pumpWidget(
-        App(
-          authenticationRepository: AuthenticationRepository(
-            firebaseAuth: firebaseAuth,
-            userDataSource: userDataSource,
-          ),
-        ),
-      );
-      // expect(find.byType(CounterPage), findsOneWidget);
-    });
+    // final firebaseAuth = FirebaseAuthMock();
+    // final userDataSource = UserDataSourceMock();
+    // testWidgets('renders Home Page', (tester) async {
+    //   await tester.pumpWidget(
+    //     App(
+    //       authenticationRepository: AuthenticationRepository(
+    //         firebaseAuth: firebaseAuth,
+    //         userDataSource: userDataSource,
+    //       ),
+    //     ),
+    //   );
+    //   // expect(find.byType(CounterPage), findsOneWidget);
+    // });
   });
 }
