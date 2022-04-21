@@ -5,7 +5,6 @@ import 'package:bloc/bloc.dart';
 import 'package:cima_repository/cima_repository.dart';
 import 'package:equatable/equatable.dart';
 
-
 part 'medication_detail_event.dart';
 
 part 'medication_detail_state.dart';

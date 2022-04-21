@@ -25,12 +25,11 @@ class MedicationSearchItemResultList extends StatelessWidget {
               ),
             );
         Navigator.of(context).pop();
-      //     Navigator.push<void>(
-      //   context,
-      //   MedicationDetailPage.route(medication: _medication),
-      // )
-      }
-      ,
+        //     Navigator.push<void>(
+        //   context,
+        //   MedicationDetailPage.route(medication: _medication),
+        // )
+      },
       child: Card(
         child: Row(
           children: [
