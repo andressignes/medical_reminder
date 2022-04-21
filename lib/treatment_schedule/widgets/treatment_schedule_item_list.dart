@@ -1,9 +1,5 @@
-import 'package:cima_repository/cima_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medical_reminder/medication_detail/bloc/medication_detail_bloc.dart';
-import 'package:medical_reminder/treatment_schedule/model/ScheduleItem.dart';
-import 'package:treatment_repository/treatment_repository.dart';
+import 'package:medical_reminder/treatment_schedule/model/schedule_item.dart';
 
 class TreatmentScheduleItemList extends StatelessWidget {
   const TreatmentScheduleItemList({

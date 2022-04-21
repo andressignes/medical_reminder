@@ -2,7 +2,6 @@ import 'package:cima_model/cima_model.dart';
 import 'package:cima_repository/cima_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medical_reminder/create_treatment/form_inputs/form_inputs.dart';
 import 'package:medical_reminder/create_treatment/create_treatment.dart';
 
 class MedicationSearchItemResultList extends StatelessWidget {

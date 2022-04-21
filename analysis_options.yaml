@@ -4,6 +4,6 @@ linter:
     public_member_api_docs: false
 analyzer:
   exclude:
-    - "*/.g.dart"
-    - "*/.freezed.dart"
+    - "**/*.g.dart"
+    - "**/*.generated_*"
 

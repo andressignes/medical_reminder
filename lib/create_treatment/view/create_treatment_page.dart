@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medical_reminder/app/bloc/app_bloc.dart';
 import 'package:medical_reminder/create_treatment/create_treatment.dart';
-import 'package:medical_reminder/create_treatment/form_inputs/form_inputs.dart';
 
 class CreateTreatmentPage extends StatelessWidget {
   const CreateTreatmentPage({

@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:intl/intl.dart';
 import 'package:medical_reminder/app/app.dart';
-import 'package:medical_reminder/profile/cubit/profile_cubit.dart';
 import 'package:medical_reminder/l10n/l10n.dart';
+import 'package:medical_reminder/profile/cubit/profile_cubit.dart';
 
 class BirthDateInput extends StatelessWidget {
   BirthDateInput({Key? key}) : super(key: key);

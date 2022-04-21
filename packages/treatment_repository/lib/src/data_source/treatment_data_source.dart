@@ -82,16 +82,10 @@ class TreatmentDataSource {
             (snapshot) => snapshot.docs
                 .map(
                   (doc) =>
-                      Treatment.fromJson(doc.data() as Map<String, dynamic>),
+                      Treatment.fromJson(doc.data()! as Map<String, dynamic>),
                 )
                 .toList(),
           );
-      // .withConverter<Treatment>(
-      //   fromFirestore: (snapshot, _) => Treatment.fromJson(snapshot.data()!),
-      //   toFirestore: (user, _) => user.toJson(),
-      // )
-      // .snapshots()
-      // .map((event) => event.data() ?? []);
       yield* snapshot;
     } on cloud_firestore.FirebaseException catch (e) {
       log('FireStore Exception while adding user: ${e.code} ${e.message}');
@@ -107,7 +101,7 @@ class TreatmentDataSource {
     try {
       final snap = await _treatmentsCollection
           .withConverter(
-              fromFirestore: _fromFirestore, toFirestore: _toFirestore)
+              fromFirestore: _fromFirestore, toFirestore: _toFirestore,)
           .where('userId', isEqualTo: userId)
           .get();
       snap.docs.map(
