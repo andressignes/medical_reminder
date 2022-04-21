@@ -15,7 +15,6 @@ class FirebaseAuthMock extends Mock implements FirebaseAuth {}
 
 class UserDataSourceMock extends Mock implements UserDataSource {}
 
-
 void main() {
   group('App', () {
     final firebaseAuth = FirebaseAuthMock();
@@ -24,10 +23,11 @@ void main() {
       await tester.pumpWidget(
         App(
           authenticationRepository: AuthenticationRepository(
-              firebaseAuth: firebaseAuth,
-              userDataSource: userDataSource,
+            firebaseAuth: firebaseAuth,
+            userDataSource: userDataSource,
+          ),
         ),
-      ),);
+      );
       // expect(find.byType(CounterPage), findsOneWidget);
     });
   });
