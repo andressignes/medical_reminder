@@ -48,17 +48,6 @@ class MedicationDetailView extends StatelessWidget {
                         ),
                         MedicationDetailDosageWidget(medicamento: medicamento),
                         MedicationDetailWarningWidget(medicamento: medicamento),
-                        ElevatedButton(
-                          onPressed: () => Navigator.push<void>(
-                            context,
-                            CreateTreatmentPage.route(
-                              medicamento: medicamento,
-                            ),
-                          ),
-                          child: Text(
-                            l10n.medicationDetailPageCreateTreatmentButton,
-                          ),
-                        ),
                       ],
                     ),
                   )

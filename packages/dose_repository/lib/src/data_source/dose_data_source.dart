@@ -37,7 +37,8 @@ class DoseDataSource {
 
   Future<void> updateDose(Dose dose) async {
     try {
-      await _collectionReference.doc(dose.id).update(dose.toJson());
+      log('Updating dose: ${dose.id}');
+      await _collectionReference.doc(dose.id).set(dose.toJson());
     } on cloud_firestore.FirebaseException catch (e) {
       log('Error updating dose: FirebaseException - ${e.message}');
     } catch (e) {
@@ -70,7 +71,7 @@ class DoseDataSource {
             toFirestore: _toFirestore,
           )
           .where('treatmentId', isEqualTo: treatmentId)
-      .orderBy('scheduledDateTime', descending: true)
+          .orderBy('scheduledDateTime')
           .get();
       snapshot.docs
           .map((doc) => doc.data() != null ? doses.add(doc.data()!) : null)

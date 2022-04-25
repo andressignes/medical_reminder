@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/l10n/l10n.dart';
 import 'package:medical_reminder/treatment_detail/treatment_detail.dart';
-import 'package:medical_reminder/treatment_schedule/model/schedule_item.dart';
+import 'package:treatment_repository/treatment_repository.dart';
 
 class TreatmentDetailPage extends StatelessWidget {
   const TreatmentDetailPage({
     Key? key,
-    required this.scheduleItem,
+    required this.treatment,
   }) : super(key: key);
 
-  static Route route(ScheduleItem scheduleItem) => MaterialPageRoute<void>(
-        builder: (_) => TreatmentDetailPage(scheduleItem: scheduleItem),
+  static Route route(Treatment treatment) => MaterialPageRoute<void>(
+        builder: (_) => TreatmentDetailPage(treatment: treatment),
       );
 
-  static Page page(ScheduleItem scheduleItem) => MaterialPage<void>(
+  static Page page(Treatment treatment) => MaterialPage<void>(
         child: TreatmentDetailPage(
-          scheduleItem: scheduleItem,
+          treatment: treatment,
         ),
       );
 
-  final ScheduleItem scheduleItem;
+  final Treatment treatment;
 
   @override
   Widget build(BuildContext context) {
@@ -34,18 +34,18 @@ class TreatmentDetailPage extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: size.height * 0.02),
           child: Column(
             children: <Widget>[
-              MedicationTextWidget(medicamento: scheduleItem.medication),
+              MedicationTextWidget(medicamento: treatment.medicamento),
               Row(
                 children: [
                   Flexible(
                     child: Column(
                       children: [
                         StartDateWidget(
-                          startDate: scheduleItem.treatment.startDate,
+                          startDate: treatment.startDate,
                         ),
-                        EndDateWidget(endDate: scheduleItem.treatment.endDate),
+                        EndDateWidget(endDate: treatment.endDate),
                         DoseWidget(
-                          frequency: scheduleItem.treatment.frequencyHours,
+                          frequency: treatment.frequencyHours,
                         ),
                       ],
                     ),
@@ -54,17 +54,20 @@ class TreatmentDetailPage extends StatelessWidget {
                     child: Column(
                       children: [
                         MedicationPhotoWidget(
-                          fotos: scheduleItem.medication!.fotos,
+                          fotos: treatment.medicamento!.fotos,
                         ),
                         MedicationDetailButton(
-                          medication: scheduleItem.medication,
+                          medication: treatment.medicamento!,
                         ),
                       ],
                     ),
                   ),
                 ],
               ),
-              // DosesListView(doses: scheduleItem.doses),
+              DosesListView(
+                doses: treatment.doses,
+                treatmentId: treatment.id,
+              ),
             ],
           ),
         ),

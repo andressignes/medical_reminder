@@ -16,14 +16,17 @@ class MedicationDetailWarningWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Row(
           children: [
-            const Icon(Icons.warning, color: Colors.redAccent),
+            Icon(
+              Icons.warning,
+              color: Theme.of(context).errorColor,
+            ),
             const SizedBox(width: 8),
             Flexible(
               child: Text(
                 medicamento.cpresc!,
                 style: Theme.of(context).textTheme.subtitle1!.copyWith(
                       fontStyle: FontStyle.italic,
-                      color: Colors.redAccent,
+                      color: Theme.of(context).errorColor,
                     ),
               ),
             ),

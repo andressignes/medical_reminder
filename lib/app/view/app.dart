@@ -1,13 +1,5 @@
-// Copyright (c) 2022, Very Good Ventures
-// https://verygood.ventures
-//
-// Use of this source code is governed by an MIT-style
-// license that can be found in the LICENSE file or at
-// https://opensource.org/licenses/MIT.
-
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cima_repository/cima_repository.dart';
-import 'package:dose_repository/dose_repository.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +8,6 @@ import 'package:medical_reminder/app/app.dart';
 import 'package:medical_reminder/create_treatment/bloc/create_treatment_bloc.dart';
 import 'package:medical_reminder/l10n/l10n.dart';
 import 'package:medical_reminder/medication_search/bloc/medication_search_bloc.dart';
-import 'package:medical_reminder/theme/theme.dart';
 import 'package:medical_reminder/treatment_schedule/bloc/treatment_schedule_bloc.dart';
 import 'package:treatment_repository/treatment_repository.dart';
 
@@ -41,7 +32,6 @@ class App extends StatelessWidget {
           ),
         ),
         RepositoryProvider(create: (_) => TreatmentRepository()),
-        RepositoryProvider(create: (_) => DoseRepository()),
       ],
       child: BlocProvider<AppBloc>(
         create: (context) => AppBloc(
@@ -69,15 +59,13 @@ class AppView extends StatelessWidget {
           create: (context) => CreateTreatmentBloc(
             userId: context.read<AppBloc>().state.user.id,
             treatmentRepository: context.read<TreatmentRepository>(),
-            doseRepository: context.read<DoseRepository>(),
+            // doseRepository: context.read<DoseRepository>(),
           ),
         ),
         BlocProvider(
           create: (context) => TreatmentScheduleBloc(
             userId: context.read<AppBloc>().state.user.id,
             treatmentRepository: context.read<TreatmentRepository>(),
-            doseRepository: context.read<DoseRepository>(),
-            cimaRepository: context.read<CimaRepository>(),
           )..add(const TreatmentScheduleSubscriptionRequested()),
         ),
       ],

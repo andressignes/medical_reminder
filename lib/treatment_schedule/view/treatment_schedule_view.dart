@@ -10,16 +10,16 @@ class TreatmentScheduleView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TreatmentScheduleBloc, TreatmentScheduleState>(
       builder: (BuildContext context, state) {
-        if (state.scheduleItems.isEmpty) {
+        if (state.treatments.isEmpty) {
           return const Center(
             child: Text('No treatment scheduled'),
           );
         }
         return ListView.builder(
-          itemCount: state.scheduleItems.length,
+          itemCount: state.treatments.length,
           itemBuilder: (BuildContext context, int index) {
-            final scheduleItem = state.scheduleItems[index];
-            return TreatmentScheduleItemList(scheduleItem: scheduleItem);
+            final scheduleItem = state.treatments[index];
+            return TreatmentScheduleItemList(treatment: scheduleItem);
           },
         );
       },

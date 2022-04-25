@@ -1,37 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/treatment_detail/treatment_detail.dart';
-import 'package:medical_reminder/treatment_schedule/model/schedule_item.dart';
+import 'package:treatment_repository/treatment_repository.dart';
 
 class TreatmentScheduleItemList extends StatelessWidget {
   const TreatmentScheduleItemList({
     Key? key,
-    required this.scheduleItem,
+    required this.treatment,
   }) : super(key: key);
 
-  final ScheduleItem scheduleItem;
+  final Treatment treatment;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => Navigator.of(context).push<void>(
         TreatmentDetailPage.route(
-          scheduleItem,
+          treatment,
         ),
       ),
       child: Card(
         child: Column(
           children: [
             Text(
-              scheduleItem.treatment.id,
+              treatment.id,
             ),
             Text(
-              scheduleItem.medication?.nombre ?? '',
+              treatment.medicamento?.nombre ?? '',
             ),
             Text(
-              scheduleItem.treatment.startDate.toIso8601String(),
+              treatment.startDate.toIso8601String(),
             ),
             Text(
-              scheduleItem.treatment.endDate.toIso8601String(),
+              treatment.endDate.toIso8601String(),
             ),
           ],
         ),

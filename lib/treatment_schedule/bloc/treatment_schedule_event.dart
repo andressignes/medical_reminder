@@ -10,3 +10,16 @@ class TreatmentScheduleSubscriptionRequested extends TreatmentScheduleEvent {
   @override
   List<Object?> get props => [];
 }
+
+class DoseTaken extends TreatmentScheduleEvent {
+  const DoseTaken({
+    required this.treatmentId,
+    required this.doseId,
+  });
+
+  final String treatmentId;
+  final String doseId;
+
+  @override
+  List<Object?> get props => [treatmentId, doseId];
+}

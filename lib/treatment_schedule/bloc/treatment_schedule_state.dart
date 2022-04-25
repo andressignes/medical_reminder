@@ -10,25 +10,25 @@ enum TreatmentScheduleStatus {
 class TreatmentScheduleState extends Equatable {
   const TreatmentScheduleState({
     this.status = TreatmentScheduleStatus.initial,
-    this.scheduleItems = const <ScheduleItem>[],
+    this.treatments = const <Treatment>[],
   });
 
   final TreatmentScheduleStatus status;
-  final List<ScheduleItem> scheduleItems;
+  final List<Treatment> treatments;
 
   @override
   List<Object> get props => [
         status,
-        scheduleItems,
+        treatments,
       ];
 
   TreatmentScheduleState copyWith({
     TreatmentScheduleStatus? status,
-    List<ScheduleItem>? scheduleItems,
+    List<Treatment>? treatments,
   }) {
     return TreatmentScheduleState(
       status: status ?? this.status,
-      scheduleItems: scheduleItems ?? this.scheduleItems,
+      treatments: treatments ?? this.treatments,
     );
   }
 }

@@ -7,6 +7,10 @@ environment:
   sdk: ">=2.16.0 <3.0.0"
 
 dependencies:
+  cima_model:
+    path: ../cima_model
+  cima_repository:
+    path: ../cima_repository
   cloud_firestore: ^3.1.12
   equatable: ^2.0.3
   firebase_core: ^1.14.1

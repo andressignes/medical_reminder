@@ -1,10 +1,12 @@
+import 'package:cima_model/cima_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:treatment_repository/src/model/dose.dart';
 import 'package:uuid/uuid.dart';
 
 part 'treatment.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Treatment extends Equatable {
   Treatment({
     String? id,
@@ -13,7 +15,10 @@ class Treatment extends Equatable {
     required this.startDate,
     required this.endDate,
     required this.frequencyHours,
-  }) : id = id ?? const Uuid().v4();
+    List<Dose>? doses,
+    this.medicamento,
+  })  : id = id ?? const Uuid().v4(),
+        doses = doses ?? [];
 
   factory Treatment.fromJson(Map<String, dynamic> json) =>
       _$TreatmentFromJson(json);
@@ -21,19 +26,25 @@ class Treatment extends Equatable {
   final String id;
   final String userId;
   final String medicationId;
+  @JsonKey(ignore: true)
+  final Medicamento? medicamento;
   final DateTime startDate;
   final DateTime endDate;
   final int frequencyHours;
+  final List<Dose> doses;
 
   Map<String, dynamic> toJson() => _$TreatmentToJson(this);
 
   @override
   List<Object?> get props => [
         id,
+        userId,
         medicationId,
         startDate,
         endDate,
         frequencyHours,
+        doses,
+        medicamento,
       ];
 
   Treatment copyWith({
@@ -42,6 +53,8 @@ class Treatment extends Equatable {
     DateTime? startDate,
     DateTime? endDate,
     int? frequencyHours,
+    List<Dose>? doses,
+    Medicamento? medicamento,
   }) {
     return Treatment(
       id: id,
@@ -50,6 +63,8 @@ class Treatment extends Equatable {
       startDate: startDate ?? this.startDate,
       endDate: endDate ?? this.endDate,
       frequencyHours: frequencyHours ?? this.frequencyHours,
+      doses: doses ?? this.doses,
+      medicamento: medicamento ?? this.medicamento,
     );
   }
 
@@ -60,5 +75,8 @@ class Treatment extends Equatable {
       'medicationId: $medicationId, '
       'startDate: $startDate, '
       'endDate: $endDate, '
-      'frequencyHours: $frequencyHours }';
+      'frequencyHours: $frequencyHours'
+      'doses: $doses, '
+      'medicamento: $medicamento, '
+      '}';
 }

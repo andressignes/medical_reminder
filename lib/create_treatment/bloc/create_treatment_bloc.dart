@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:dose_repository/dose_repository.dart';
+// import 'package:dose_repository/dose_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 import 'package:medical_reminder/create_treatment/form_inputs/form_inputs.dart';
@@ -17,7 +17,7 @@ class CreateTreatmentBloc
   CreateTreatmentBloc({
     required this.userId,
     required this.treatmentRepository,
-    required this.doseRepository,
+    // required this.doseRepository,
   }) : super(const CreateTreatmentState()) {
     on<InitializeCreateTreatmentEvent>(_onInitialize);
     on<MedicationChangedCreteTreatmentEvent>(_onMedicationChanged);
@@ -29,7 +29,7 @@ class CreateTreatmentBloc
   }
 
   final TreatmentRepository treatmentRepository;
-  final DoseRepository doseRepository;
+  // final DoseRepository doseRepository;
   final String userId;
 
   FutureOr<void> _onInitialize(
@@ -124,18 +124,19 @@ class CreateTreatmentBloc
         endDate: state.endDate.value!,
         frequencyHours: state.frequency.value ?? 0,
       );
-      await treatmentRepository.addTreatment(treatment);
       var doseDateTime = treatment.startDate;
       while (doseDateTime.isBefore(treatment.endDate)) {
         final dose = Dose(
           scheduledDateTime: doseDateTime,
           treatmentId: treatment.id,
         );
-        await doseRepository.addDose(dose);
+        treatment.doses.add(dose);
+        // await doseRepository.addDose(dose);
         doseDateTime = doseDateTime.add(
           Duration(hours: treatment.frequencyHours),
         );
       }
+      await treatmentRepository.addTreatment(treatment);
       emit(state.copyWith(status: FormzStatus.submissionSuccess));
     } on Exception catch (e) {
       log('Error: $e');
