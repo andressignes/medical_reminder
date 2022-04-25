@@ -16,6 +16,7 @@ import 'package:medical_reminder/app/app.dart';
 import 'package:medical_reminder/create_treatment/bloc/create_treatment_bloc.dart';
 import 'package:medical_reminder/l10n/l10n.dart';
 import 'package:medical_reminder/medication_search/bloc/medication_search_bloc.dart';
+import 'package:medical_reminder/theme/theme.dart';
 import 'package:medical_reminder/treatment_schedule/bloc/treatment_schedule_bloc.dart';
 import 'package:treatment_repository/treatment_repository.dart';
 
@@ -91,6 +92,11 @@ class AppView extends StatelessWidget {
         home: FlowBuilder<AppStatus>(
           state: context.select((AppBloc bloc) => bloc.state.status),
           onGeneratePages: onGenerateAppViewPages,
+        ),
+        theme: ThemeData.from(
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromRGBO(0, 85, 0,0),
+          ),
         ),
       ),
     );

@@ -56,6 +56,9 @@ class TreatmentDetailPage extends StatelessWidget {
                         MedicationPhotoWidget(
                           fotos: scheduleItem.medication!.fotos,
                         ),
+                        MedicationDetailButton(
+                          medication: scheduleItem.medication,
+                        ),
                       ],
                     ),
                   ),
