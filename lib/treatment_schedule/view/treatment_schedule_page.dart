@@ -7,9 +7,9 @@ class TreatmentSchedulePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<TreatmentScheduleBloc>().add(
-          const TreatmentScheduleSubscriptionRequested(),
-        );
+    // context.read<TreatmentScheduleBloc>().add(
+    //       const TreatmentScheduleSubscriptionRequested(),
+    //     );
     return const TreatmentScheduleView();
   }
 }

@@ -113,6 +113,7 @@ class TreatmentDataSource {
           }
         },
       ).toList();
+      log('TreatmentDataSource.getTreatments2: ${treatments.length}');
       return treatments;
     } on cloud_firestore.FirebaseException catch (e) {
       log('FireStore Exception while adding user: ${e.code} ${e.message}');

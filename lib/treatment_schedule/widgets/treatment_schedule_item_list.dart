@@ -15,6 +15,10 @@ class TreatmentScheduleItemList extends StatelessWidget {
       child: Column(
         children: [
           Text(
+            scheduleItem.treatment.id,
+          ),
+
+          Text(
             scheduleItem.medication?.nombre ?? '',
           ),
           Text(

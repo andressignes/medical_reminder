@@ -3,10 +3,13 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:cima_repository/cima_repository.dart';
+import 'package:dartz/dartz.dart';
 import 'package:dose_repository/dose_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:medical_reminder/treatment_schedule/model/schedule_item.dart';
 import 'package:treatment_repository/treatment_repository.dart';
+import 'package:cima_model/cima_model.dart';
+import 'package:errors/errors.dart';
 
 part 'treatment_schedule_event.dart';
 
@@ -38,15 +41,18 @@ class TreatmentScheduleBloc
     emit(state.copyWith(status: TreatmentScheduleStatus.loading));
 
     final treatments = await _treatmentRepository.getTreatments2(userId);
-    log('treatments: $treatments');
     emit(
       state.copyWith(scheduleItems: List<ScheduleItem>.empty()),
     );
     for (final treatment in treatments) {
-      final medication = await _cimaRepository.getMedicamento(
-        nregistro: treatment.medicationId,
-      );
-      final doses = await _doseRepository.getDoses(treatment.id);
+      final response = await Future.wait([
+        _cimaRepository.getMedicamento(
+          nregistro: treatment.medicationId,
+        ),
+        _doseRepository.getDoses(treatment.id),
+      ]);
+      final medication = response[0] as Either<Failure, Medicamento>;
+      final doses = response[1] as List<Dose>;
       emit(
         medication.fold(
           (failure) => state.copyWith(

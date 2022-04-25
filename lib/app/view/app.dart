@@ -77,7 +77,7 @@ class AppView extends StatelessWidget {
             treatmentRepository: context.read<TreatmentRepository>(),
             doseRepository: context.read<DoseRepository>(),
             cimaRepository: context.read<CimaRepository>(),
-          ),
+          )..add(const TreatmentScheduleSubscriptionRequested()),
         ),
       ],
       child: MaterialApp(

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medical_reminder/treatment_schedule/treatment_schedule.dart';
@@ -14,6 +16,7 @@ class TreatmentScheduleView extends StatelessWidget {
             child: Text('No treatment scheduled'),
           );
         }
+        log('List size: ${state.scheduleItems.length}');
         return ListView.builder(
           itemCount: state.scheduleItems.length,
           itemBuilder: (BuildContext context, int index) {
