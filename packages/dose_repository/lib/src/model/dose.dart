@@ -8,7 +8,7 @@ part 'dose.g.dart';
 class Dose extends Equatable {
   Dose({
     required this.treatmentId,
-    required this.sheduledDateTime,
+    required this.scheduledDateTime,
     this.intakeDateTime,
   }) : id = const Uuid().v4();
 
@@ -16,7 +16,7 @@ class Dose extends Equatable {
 
   final String id;
   final String treatmentId;
-  final DateTime sheduledDateTime;
+  final DateTime scheduledDateTime;
   final DateTime? intakeDateTime;
 
   Map<String, dynamic> toJson() => _$DoseToJson(this);
@@ -25,7 +25,7 @@ class Dose extends Equatable {
   List<Object?> get props => [
         id,
         treatmentId,
-        sheduledDateTime,
+        scheduledDateTime,
         intakeDateTime,
       ];
 }

@@ -70,6 +70,7 @@ class DoseDataSource {
             toFirestore: _toFirestore,
           )
           .where('treatmentId', isEqualTo: treatmentId)
+      .orderBy('scheduledDateTime', descending: true)
           .get();
       snapshot.docs
           .map((doc) => doc.data() != null ? doses.add(doc.data()!) : null)

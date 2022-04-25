@@ -100,11 +100,11 @@
   "@medicationNameFieldLabel": {
     "description": "Etiqueta del campo de nombre del medicamento"
   },
-  "startDateFieldLabel": "Fecha de inicio",
+  "startDateFieldLabel": "Inicio del tratamiento",
   "@startDateFieldLabel": {
     "description": "Etiqueta del campo de fecha de inicio"
   },
-  "endDateFieldLabel": "Fecha de fin",
+  "endDateFieldLabel": "Fin del tratamiento",
   "@endDateFieldLabel": {
     "description": "Etiqueta del campo de fecha de fin"
   },
@@ -137,5 +137,9 @@
   "birthDateFieldLabel": "Fecha de nacimiento",
   "@birthDateFieldLabel": {
     "description": "Etiqueta del campo de fecha de nacimiento"
+  },
+  "treatmentDetailPageTitle": "Detalle de tratamiento",
+  "@treatmentDetailPageTitle": {
+    "description": "Título de la página de detalle de tratamiento"
   }
 }

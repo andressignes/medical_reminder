@@ -121,14 +121,14 @@ class CreateTreatmentBloc
         userId: userId,
         medicationId: state.medication.value!.nregistro!,
         startDate: state.startDate.value!,
-        endDate: state.endDate.value != null ? state.endDate.value! : null,
+        endDate: state.endDate.value!,
         frequencyHours: state.frequency.value ?? 0,
       );
       await treatmentRepository.addTreatment(treatment);
       var doseDateTime = treatment.startDate;
-      while (doseDateTime.isBefore(treatment.endDate!)) {
+      while (doseDateTime.isBefore(treatment.endDate)) {
         final dose = Dose(
-          sheduledDateTime: doseDateTime,
+          scheduledDateTime: doseDateTime,
           treatmentId: treatment.id,
         );
         await doseRepository.addDose(dose);

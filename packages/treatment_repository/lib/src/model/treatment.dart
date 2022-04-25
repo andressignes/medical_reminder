@@ -22,7 +22,7 @@ class Treatment extends Equatable {
   final String userId;
   final String medicationId;
   final DateTime startDate;
-  final DateTime? endDate;
+  final DateTime endDate;
   final int frequencyHours;
 
   Map<String, dynamic> toJson() => _$TreatmentToJson(this);

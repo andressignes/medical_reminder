@@ -1,18 +1,15 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:cima_repository/cima_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dose_repository/dose_repository.dart';
 import 'package:equatable/equatable.dart';
+import 'package:errors/errors.dart';
 import 'package:medical_reminder/treatment_schedule/model/schedule_item.dart';
 import 'package:treatment_repository/treatment_repository.dart';
-import 'package:cima_model/cima_model.dart';
-import 'package:errors/errors.dart';
 
 part 'treatment_schedule_event.dart';
-
 part 'treatment_schedule_state.dart';
 
 class TreatmentScheduleBloc

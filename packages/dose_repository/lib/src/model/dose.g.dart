@@ -8,7 +8,7 @@ part of 'dose.dart';
 
 Dose _$DoseFromJson(Map<String, dynamic> json) => Dose(
       treatmentId: json['treatmentId'] as String,
-      sheduledDateTime: DateTime.parse(json['sheduledDateTime'] as String),
+      scheduledDateTime: DateTime.parse(json['scheduledDateTime'] as String),
       intakeDateTime: json['intakeDateTime'] == null
           ? null
           : DateTime.parse(json['intakeDateTime'] as String),
@@ -16,6 +16,6 @@ Dose _$DoseFromJson(Map<String, dynamic> json) => Dose(
 
 Map<String, dynamic> _$DoseToJson(Dose instance) => <String, dynamic>{
       'treatmentId': instance.treatmentId,
-      'sheduledDateTime': instance.sheduledDateTime.toIso8601String(),
+      'scheduledDateTime': instance.scheduledDateTime.toIso8601String(),
       'intakeDateTime': instance.intakeDateTime?.toIso8601String(),
     };

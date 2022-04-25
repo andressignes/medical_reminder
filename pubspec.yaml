@@ -28,6 +28,7 @@ dependencies:
     path: packages/form_inputs
   formz: ^0.4.1
   intl: ^0.17.0
+  scrollable_positioned_list: ^0.2.3
   treatment_repository:
     path: packages/treatment_repository
   url_launcher: any
