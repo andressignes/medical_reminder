@@ -25,8 +25,14 @@ class _DosesListViewState extends State<DosesListView> {
 
   @override
   Widget build(BuildContext context) {
+    var index = 0;
+    for (final item in widget.doses) {
+      if (item.scheduledDateTime.isBefore(DateTime.now())) {
+        index++;
+      }
+    }
     return SizedBox(
-      height: 100,
+      height: 150,
       child: ScrollablePositionedList.builder(
         itemCount: widget.doses.length,
         itemScrollController: itemScrollController,
@@ -36,6 +42,7 @@ class _DosesListViewState extends State<DosesListView> {
           treatmentId: widget.treatmentId,
         ),
         itemPositionsListener: itemPositionsListener,
+        initialScrollIndex: index,
       ),
     );
   }
