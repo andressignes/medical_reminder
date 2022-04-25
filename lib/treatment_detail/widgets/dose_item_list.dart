@@ -24,11 +24,15 @@ class DoseItemList extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return BlocBuilder<TreatmentScheduleBloc, TreatmentScheduleState>(
       builder: (context, state) {
-        final currentDose = state.treatments.firstWhere(
-          (treatment) => treatment.id == treatmentId,
-        ).doses.firstWhere((element) => element.id == dose.id);
+        final currentDose = state.treatments
+            .firstWhere(
+              (treatment) => treatment.id == treatmentId,
+            )
+            .doses
+            .firstWhere((element) => element.id == dose.id);
         return InkWell(
-          onTap: () => currentDose.intakeDateTime == null ? _onTap(context) : null,
+          onTap: () =>
+              currentDose.intakeDateTime == null ? _onTap(context) : null,
           child: Card(
             child: Padding(
               padding: EdgeInsets.symmetric(
@@ -37,21 +41,10 @@ class DoseItemList extends StatelessWidget {
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text(
-                    _dateFormat.format(dose.scheduledDateTime),
-                    style: Theme.of(context).textTheme.subtitle1,
-                  ),
-                  Text(
-                    _timeFormat.format(dose.scheduledDateTime),
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  if (currentDose.intakeDateTime != null)
-                    Text(
-                      _dateFormat.format(currentDose.intakeDateTime!),
-                      style: Theme.of(context).textTheme.subtitle1,
-                    ),
+                  _ScheduledDateText(dose: dose),
+                  const Spacer(),
+                  _IntakeDateText(dose: dose),
                 ],
               ),
             ),
@@ -68,5 +61,68 @@ class DoseItemList extends StatelessWidget {
             doseId: dose.id!,
           ),
         );
+  }
+}
+
+class _ScheduledDateText extends StatelessWidget {
+  const _ScheduledDateText({
+    Key? key,
+    required this.dose,
+  }) : super(key: key);
+
+  final Dose dose;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Fecha programada',
+          style: Theme.of(context).textTheme.caption,
+        ),
+        Text(
+          _dateFormat.format(dose.scheduledDateTime),
+          style: Theme.of(context).textTheme.subtitle1,
+        ),
+        Text(
+          _timeFormat.format(dose.scheduledDateTime),
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
+      ],
+    );
+  }
+}
+
+class _IntakeDateText extends StatelessWidget {
+  const _IntakeDateText({
+    Key? key,
+    required this.dose,
+  }) : super(key: key);
+
+  final Dose dose;
+
+  @override
+  Widget build(BuildContext context) {
+    if (dose.intakeDateTime == null) {
+      return const SizedBox.shrink();
+    }
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Fecha de toma',
+          style: Theme.of(context).textTheme.caption,
+        ),
+        Text(
+          _dateFormat.format(dose.intakeDateTime!),
+          style: Theme.of(context).textTheme.subtitle1,
+        ),
+        Text(
+          _timeFormat.format(dose.intakeDateTime!),
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
+      ],
+    );
   }
 }
