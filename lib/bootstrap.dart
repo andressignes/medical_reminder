@@ -11,8 +11,6 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:notification_api/notification_api.dart';
-import 'package:timezone/data/latest_all.dart' as tz;
-import 'package:timezone/timezone.dart' as tz;
 
 class AppBlocObserver extends BlocObserver {
   @override
@@ -34,7 +32,6 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   };
   await runZonedGuarded(
     () async {
-      tz.initializeTimeZones();
       await NotificationApi.initialize();
       await BlocOverrides.runZoned(
         () async {
