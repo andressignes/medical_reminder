@@ -22,12 +22,15 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
+  flutter_local_notifications: ^9.4.1
   flutter_localizations:
     sdk: flutter
   form_inputs:
     path: packages/form_inputs
   formz: ^0.4.1
   intl: ^0.17.0
+  notification_api:
+    path: packages/notification_api
   scrollable_positioned_list: ^0.2.3
   treatment_repository:
     path: packages/treatment_repository
