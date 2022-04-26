@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medical_reminder/treatment_schedule/treatment_schedule.dart';
@@ -10,6 +9,9 @@ class TreatmentScheduleView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TreatmentScheduleBloc, TreatmentScheduleState>(
       builder: (BuildContext context, state) {
+        if (state.status == TreatmentScheduleStatus.loading) {
+          return const Center(child: CircularProgressIndicator());
+        }
         if (state.treatments.isEmpty) {
           return const Center(
             child: Text('No treatment scheduled'),

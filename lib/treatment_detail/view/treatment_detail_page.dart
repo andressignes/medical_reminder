@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medical_reminder/l10n/l10n.dart';
 import 'package:medical_reminder/treatment_detail/treatment_detail.dart';
+import 'package:medical_reminder/treatment_schedule/bloc/treatment_schedule_bloc.dart';
 import 'package:treatment_repository/treatment_repository.dart';
 
 class TreatmentDetailPage extends StatelessWidget {
@@ -28,6 +30,17 @@ class TreatmentDetailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.treatmentDetailPageTitle),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.delete),
+            onPressed: () {
+              context.read<TreatmentScheduleBloc>().add(
+                    TreatmentDeleted(treatmentId: treatment.id),
+                  );
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(

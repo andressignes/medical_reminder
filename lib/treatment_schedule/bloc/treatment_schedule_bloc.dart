@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:notification_api/notification_api.dart';
 import 'package:treatment_repository/treatment_repository.dart';
 
 part 'treatment_schedule_event.dart';
@@ -17,6 +18,7 @@ class TreatmentScheduleBloc
         super(const TreatmentScheduleState()) {
     on<TreatmentScheduleSubscriptionRequested>(_onSubscriptionRequested);
     on<DoseTaken>(_onDoseTaken);
+    on<TreatmentDeleted>(_onTreatmentDeleted);
   }
 
   final String userId;
@@ -26,9 +28,24 @@ class TreatmentScheduleBloc
     TreatmentScheduleSubscriptionRequested event,
     Emitter<TreatmentScheduleState> emit,
   ) async {
+    log('TreatmentScheduleBloc._onSubscriptionRequested');
     emit(state.copyWith(status: TreatmentScheduleStatus.loading));
+    await NotificationApi.cancelAllNotifications();
 
     final treatments = await _treatmentRepository.getTreatments2(userId);
+    for (final t in treatments) {
+      for (final d in t.doses) {
+        if (d.scheduledDateTime.isAfter(DateTime.now())) {
+          await NotificationApi.showScheduledNotification(
+            // id: int.parse(d.id!),
+            title: 'Dose of ${d.scheduledDateTime.toIso8601String()}',
+            body: '${t.medicamento?.nombre ?? 'Medicamento'} '
+                'de las ${d.scheduledDateTime.toIso8601String()}',
+            scheduledDateTime: d.scheduledDateTime.add(const Duration(seconds: 1)),
+          );
+        }
+      }
+    }
     emit(
       state.copyWith(
         status: TreatmentScheduleStatus.loaded,
@@ -65,5 +82,13 @@ class TreatmentScheduleBloc
         ).toList(),
       ),
     );
+  }
+
+  FutureOr<void> _onTreatmentDeleted(
+    TreatmentDeleted event,
+    Emitter<TreatmentScheduleState> emit,
+  ) async {
+    await _treatmentRepository.deleteTreatment(event.treatmentId);
+    add(const TreatmentScheduleSubscriptionRequested());
   }
 }

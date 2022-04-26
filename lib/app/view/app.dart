@@ -66,7 +66,7 @@ class AppView extends StatelessWidget {
           create: (context) => TreatmentScheduleBloc(
             userId: context.read<AppBloc>().state.user.id,
             treatmentRepository: context.read<TreatmentRepository>(),
-          )..add(const TreatmentScheduleSubscriptionRequested()),
+          ),
         ),
       ],
       child: MaterialApp(
@@ -83,7 +83,7 @@ class AppView extends StatelessWidget {
         ),
         theme: ThemeData.from(
           colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromRGBO(0, 85, 0,0),
+            seedColor: const Color.fromRGBO(0, 85, 0, 0),
           ),
         ),
       ),

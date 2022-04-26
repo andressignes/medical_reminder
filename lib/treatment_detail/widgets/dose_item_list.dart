@@ -24,6 +24,9 @@ class DoseItemList extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return BlocBuilder<TreatmentScheduleBloc, TreatmentScheduleState>(
       builder: (context, state) {
+        if(state.treatments.isEmpty ) {
+          return const SizedBox.shrink();
+        }
         final currentDose = state.treatments
             .firstWhere(
               (treatment) => treatment.id == treatmentId,

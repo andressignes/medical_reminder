@@ -60,11 +60,17 @@ class EndDateField extends StatelessWidget {
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime.now().subtract(const Duration(days: 365)),
-      lastDate: DateTime.now().add(const Duration(days: 15)),
+      lastDate: DateTime.now().add(const Duration(days: 365)),
     );
     if (selectedDate != null) {
       final endDate = EndDate.dirty(
-        value: selectedDate,
+        value: selectedDate.add(
+          const Duration(
+            hours: 23,
+            minutes: 59,
+            seconds: 59,
+          ),
+        ),
         startDate: bloc.state.startDate.value,
       );
       bloc.add(EndDateChangedCreateTreatmentEvent(endDate));

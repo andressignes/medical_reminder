@@ -54,24 +54,34 @@ class NotificationApi {
     String? body,
     String? payload,
     required DateTime scheduledDateTime,
-  }) async =>
-      _notifications.zonedSchedule(
-        id,
-        title,
-        body,
-        _scheduleDaily(const Time(18, 14)),
-        await _getNotificationDetails(),
-        payload: payload,
-        androidAllowWhileIdle: true,
-        uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.absoluteTime,
-        matchDateTimeComponents: DateTimeComponents.time,
-      );
+  }) async {
+    log('Notification: $scheduledDateTime - $body');
+    await _notifications.zonedSchedule(
+      id,
+      title,
+      body,
+      tz.TZDateTime(
+        tz.local,
+        scheduledDateTime.year,
+        scheduledDateTime.month,
+        scheduledDateTime.day,
+        scheduledDateTime.hour,
+        scheduledDateTime.minute,
+        scheduledDateTime.second,
+      ),
+      await _getNotificationDetails(),
+      payload: payload,
+      androidAllowWhileIdle: true,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+      matchDateTimeComponents: DateTimeComponents.dateAndTime,
+    );
+  }
 
   static Future<NotificationDetails> _getNotificationDetails() async {
     return const NotificationDetails(
       android: AndroidNotificationDetails(
-        'channelId 3',
+        'channelId',
         'channelName',
         channelDescription: 'channelDescription',
       ),
@@ -93,8 +103,10 @@ class NotificationApi {
     final scheduledTime = scheduledDate.isBefore(now)
         ? scheduledDate.add(const Duration(days: 1))
         : scheduledDate;
-    log('scheduledTime: $scheduledTime');
-    log('now: $now');
     return scheduledTime;
   }
+
+  static Future cancelNotification(int id) async => _notifications.cancel(id);
+
+  static Future cancelAllNotifications() async => _notifications.cancelAll();
 }

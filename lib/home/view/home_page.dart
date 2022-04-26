@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medical_reminder/create_treatment/view/create_treatment_page.dart';
 import 'package:medical_reminder/l10n/l10n.dart';
 import 'package:medical_reminder/profile/view/profile_page.dart';
@@ -12,6 +13,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    context
+        .read<TreatmentScheduleBloc>()
+        .add(const TreatmentScheduleSubscriptionRequested());
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.medicalReminderAppBarTitle),
