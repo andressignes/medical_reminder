@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-// import 'package:dose_repository/dose_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 import 'package:medical_reminder/create_treatment/form_inputs/form_inputs.dart';
@@ -116,7 +115,6 @@ class CreateTreatmentBloc
     Emitter<CreateTreatmentState> emit,
   ) async {
     try {
-      log('submit');
       final treatment = Treatment(
         userId: userId,
         medicationId: state.medication.value!.nregistro!,
@@ -125,6 +123,7 @@ class CreateTreatmentBloc
         frequencyHours: state.frequency.value ?? 0,
       );
       var doseDateTime = treatment.startDate;
+      log('doseDateTime: $doseDateTime');
       while (doseDateTime.isBefore(treatment.endDate)) {
         final dose = Dose(
           scheduledDateTime: doseDateTime,

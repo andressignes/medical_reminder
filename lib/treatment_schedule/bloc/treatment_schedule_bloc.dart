@@ -4,6 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:notification_api/notification_api.dart';
 import 'package:treatment_repository/treatment_repository.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 part 'treatment_schedule_event.dart';
 
@@ -41,7 +43,15 @@ class TreatmentScheduleBloc
             title: 'Dose of ${d.scheduledDateTime.toIso8601String()}',
             body: '${t.medicamento?.nombre ?? 'Medicamento'} '
                 'de las ${d.scheduledDateTime.toIso8601String()}',
-            scheduledDateTime: d.scheduledDateTime.add(const Duration(seconds: 1)),
+            scheduledDateTime: tz.TZDateTime(
+              tz.local,
+              d.scheduledDateTime.year,
+              d.scheduledDateTime.month,
+              d.scheduledDateTime.day,
+              d.scheduledDateTime.hour,
+              d.scheduledDateTime.minute,
+              d.scheduledDateTime.second,
+            ),
           );
         }
       }

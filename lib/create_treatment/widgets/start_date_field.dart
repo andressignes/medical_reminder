@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -66,6 +68,15 @@ class StartDateField extends StatelessWidget {
         initialTime: TimeOfDay.now(),
       );
       if (selectedTime != null) {
+        final dateTime = DateTime(
+          selectedDate.year,
+          selectedDate.month,
+          selectedDate.day,
+          selectedTime.hour,
+          selectedTime.minute,
+        );
+        log('selected dateTime: $dateTime');
+        log('now: ${DateTime.now()}');
         final startDate = StartDate.dirty(
           value: selectedDate.add(
             Duration(
