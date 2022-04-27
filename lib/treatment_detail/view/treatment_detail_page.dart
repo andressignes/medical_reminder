@@ -70,7 +70,7 @@ class TreatmentDetailPage extends StatelessWidget {
                           fotos: treatment.medicamento!.fotos,
                         ),
                         MedicationDetailButton(
-                          medication: treatment.medicamento!,
+                          medication: treatment.medicamento,
                         ),
                       ],
                     ),

@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:cima_repository/cima_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:medical_reminder/medication_detail/widgets/image_fullscreen_page.dart';
 
 class MedicationPhotoWidget extends StatelessWidget {
   const MedicationPhotoWidget({

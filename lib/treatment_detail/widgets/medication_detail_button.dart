@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cima_repository/cima_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/l10n/l10n.dart';

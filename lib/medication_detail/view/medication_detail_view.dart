@@ -1,7 +1,6 @@
 import 'package:cima_repository/cima_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medical_reminder/create_treatment/view/create_treatment_page.dart';
 import 'package:medical_reminder/l10n/l10n.dart';
 import 'package:medical_reminder/medication_detail/medication_detail.dart';
 
