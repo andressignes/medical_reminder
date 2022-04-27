@@ -41,13 +41,66 @@ class SearchMedicationDelegate extends SearchDelegate<Medicamento?> {
 
   @override
   Widget buildResults(BuildContext context) {
-    log('buildResults');
-    return const SizedBox.shrink();
+    return _MedicationResult(
+      query: query,
+      medicationSearchBloc: medicationSearchBloc,
+    );
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    if (query.length > 3) {
+    return _MedicationResult(
+      minLength: 5,
+      query: query,
+      medicationSearchBloc: medicationSearchBloc,
+    );
+    // if (query.length > 3) {
+    //   medicationSearchBloc.add(MedicationsFetched(name: query));
+    //   return BlocBuilder<MedicationSearchBloc, MedicationSearchState>(
+    //     bloc: medicationSearchBloc,
+    //     builder: (context, state) {
+    //       switch (state.status) {
+    //         case MedicationSearchStatus.initial:
+    //         case MedicationSearchStatus.loading:
+    //           return const Center(
+    //             child: CircularProgressIndicator(),
+    //           );
+    //         case MedicationSearchStatus.loaded:
+    //         case MedicationSearchStatus.error:
+    //           return ListView.builder(
+    //             itemCount: state.medications.length,
+    //             itemBuilder: (context, index) {
+    //               final medication = state.medications[index];
+    //               return MedicationSearchItemResultList(medication: medication);
+    //             },
+    //           );
+    //       }
+    //     },
+    //   );
+    // } else {
+    //   return const SizedBox.shrink();
+    // }
+  }
+
+  @override
+  ThemeData appBarTheme(BuildContext context) => Theme.of(context);
+}
+
+class _MedicationResult extends StatelessWidget {
+  const _MedicationResult({
+    Key? key,
+    this.minLength = 3,
+    required this.query,
+    required this.medicationSearchBloc,
+  }) : super(key: key);
+
+  final int minLength;
+  final String query;
+  final MedicationSearchBloc medicationSearchBloc;
+
+  @override
+  Widget build(BuildContext context) {
+    if (query.length >= minLength) {
       medicationSearchBloc.add(MedicationsFetched(name: query));
       return BlocBuilder<MedicationSearchBloc, MedicationSearchState>(
         bloc: medicationSearchBloc,
@@ -74,7 +127,4 @@ class SearchMedicationDelegate extends SearchDelegate<Medicamento?> {
       return const SizedBox.shrink();
     }
   }
-
-  @override
-  ThemeData appBarTheme(BuildContext context) => Theme.of(context);
 }

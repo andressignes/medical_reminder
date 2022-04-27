@@ -9,31 +9,32 @@ class SearchMedicalView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
-        // title: TextFormField(
-        //   decoration: InputDecoration(
-        //     hintText: l10n.searchMedicationFieldLabel,
-        //   ),
-        //   onChanged: (text) {
-        //     if (text.length > 3) {
-        //       context
-        //           .read<MedicationSearchBloc>()
-        //           .add(MedicationsFetched(name: text));
-        //     }
-        //   },
-        // ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () => showSearch<Medicamento?>(
-              context: context,
-              delegate: SearchMedicationDelegate(
-                context.read<MedicationSearchBloc>(),
-              ),
-            ),
+        title: TextFormField(
+          decoration: InputDecoration(
+            hintText: 'l10n.searchMedicationFieldLabel',
           ),
-        ],
+          onChanged: (text) {
+            if (text.length > 3) {
+              context
+                  .read<MedicationSearchBloc>()
+                  .add(MedicationsFetched(name: text));
+            }
+          },
+        ),
+        // actions: [
+        //   IconButton(
+        //     icon: const Icon(Icons.search),
+        //     onPressed: () => showSearch<Medicamento?>(
+        //       context: context,
+        //       delegate: SearchMedicationDelegate(
+        //         context.read<MedicationSearchBloc>(),
+        //       ),
+        //     ),
+        //   ),
+        // ],
       ),
       body: const SearchMedicationResultList(),
     );
