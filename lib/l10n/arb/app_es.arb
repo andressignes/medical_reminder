@@ -141,5 +141,13 @@
   "treatmentDetailPageTitle": "Detalle de tratamiento",
   "@treatmentDetailPageTitle": {
     "description": "Título de la página de detalle de tratamiento"
+  },
+  "nextDoseFieldLabel": "Siguiente dosis",
+  "@nextDoseFieldLabel": {
+    "description": "Etiqueta del campo de siguiente dosis"
+  },
+  "noNextDoseFieldLabel": "No hay mas dosis programadas",
+  "@noNextDoseFieldLabel": {
+    "description": "Etiqueta del campo de no hay siguiente dosis"
   }
 }

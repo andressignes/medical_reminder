@@ -28,20 +28,20 @@ class HomePage extends StatelessWidget {
               ProfilePage.route(),
             ),
           ),
-          IconButton(
-              onPressed: () => Navigator.of(context)
-                  .push<void>(MedicationSearchPage.route()),
-              icon: const Icon(Icons.medical_services)),
         ],
       ),
       body: const TreatmentSchedulePage(),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).hoverColor,
         tooltip: l10n.searchMedicationFieldLabel,
         onPressed: () => Navigator.push<void>(
           context,
           CreateTreatmentPage.route(),
         ),
-        child: const Icon(Icons.medication),
+        child: Icon(
+          Icons.medical_services_rounded,
+          color: Theme.of(context).primaryColor,
+        ),
       ),
     );
   }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cima_model/cima_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -34,6 +36,16 @@ class Treatment extends Equatable {
   final List<Dose> doses;
 
   Map<String, dynamic> toJson() => _$TreatmentToJson(this);
+
+  Dose? get nextDose {
+    final now = DateTime.now();
+    for(final d in doses) {
+      if (d.scheduledDateTime.isAfter(now) && d.intakeDateTime == null) {
+        return d;
+      }
+    }
+    return null;
+  }
 
   @override
   List<Object?> get props => [
