@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:medical_reminder/l10n/l10n.dart';
 import 'package:medical_reminder/treatment_detail/treatment_detail.dart';
 import 'package:medical_reminder/treatment_schedule/widgets/medication_image.dart';
 import 'package:medical_reminder/treatment_schedule/widgets/next_dose_date_text.dart';
@@ -17,7 +15,6 @@ class TreatmentScheduleItemList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
     final size = MediaQuery.of(context).size;
     return InkWell(
       onTap: () => Navigator.of(context).push<void>(
@@ -42,14 +39,12 @@ class TreatmentScheduleItemList extends StatelessWidget {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Flexible(
                     flex: 3,
                     child: NextDoseTextTime(dose: treatment.nextDose),
                   ),
                   Flexible(
-                    flex: 1,
                     child: MedicationImage(
                       photos: treatment.medicamento?.fotos,
                     ),

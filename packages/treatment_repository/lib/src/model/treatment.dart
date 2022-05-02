@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:cima_model/cima_model.dart';
 import 'package:equatable/equatable.dart';

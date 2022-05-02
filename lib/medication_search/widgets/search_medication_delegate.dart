@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:cima_repository/cima_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,32 +53,6 @@ class SearchMedicationDelegate extends SearchDelegate<Medicamento?> {
       query: query,
       medicationSearchBloc: medicationSearchBloc,
     );
-    // if (query.length > 3) {
-    //   medicationSearchBloc.add(MedicationsFetched(name: query));
-    //   return BlocBuilder<MedicationSearchBloc, MedicationSearchState>(
-    //     bloc: medicationSearchBloc,
-    //     builder: (context, state) {
-    //       switch (state.status) {
-    //         case MedicationSearchStatus.initial:
-    //         case MedicationSearchStatus.loading:
-    //           return const Center(
-    //             child: CircularProgressIndicator(),
-    //           );
-    //         case MedicationSearchStatus.loaded:
-    //         case MedicationSearchStatus.error:
-    //           return ListView.builder(
-    //             itemCount: state.medications.length,
-    //             itemBuilder: (context, index) {
-    //               final medication = state.medications[index];
-    //               return MedicationSearchItemResultList(medication: medication);
-    //             },
-    //           );
-    //       }
-    //     },
-    //   );
-    // } else {
-    //   return const SizedBox.shrink();
-    // }
   }
 
   @override
