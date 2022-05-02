@@ -43,7 +43,7 @@ class TreatmentDataSource {
 
   Future<void> updateTreatment(Treatment treatment) async {
     try {
-      log('TreatmentDataSource.updateTreatment: ${treatment.toJson()}');
+      // log('TreatmentDataSource.updateTreatment: ${treatment.toJson()}');
       await _treatmentsCollection.doc(treatment.id).update(treatment.toJson());
     } on cloud_firestore.FirebaseException catch (e) {
       log(

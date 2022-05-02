@@ -149,5 +149,13 @@
   "noNextDoseFieldLabel": "No hay mas dosis programadas",
   "@noNextDoseFieldLabel": {
     "description": "Etiqueta del campo de no hay siguiente dosis"
+  },
+  "scheduledDoseFieldLabel": "Dosis programada",
+  "@scheduledDoseFieldLabel": {
+    "description": "Etiqueta del campo de dosis programada"
+  },
+  "intakeDateTimeFieldLabel": "Momento de la toma",
+  "@intakeDateTimeFieldLabel": {
+    "description": "Etiqueta del campo de fecha y hora de ingesta"
   }
 }

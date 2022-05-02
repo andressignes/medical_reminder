@@ -42,47 +42,46 @@ class TreatmentDetailPage extends StatelessWidget {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(vertical: size.height * 0.02),
-          child: Column(
-            children: <Widget>[
-              MedicationTextWidget(medicamento: treatment.medicamento),
-              Row(
-                children: [
-                  Flexible(
-                    child: Column(
-                      children: [
-                        StartDateWidget(
-                          startDate: treatment.startDate,
-                        ),
-                        EndDateWidget(endDate: treatment.endDate),
-                        DoseWidget(
-                          frequency: treatment.frequencyHours,
-                        ),
-                      ],
-                    ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(vertical: size.height * 0.02),
+        child: Column(
+          children: <Widget>[
+            MedicationTextWidget(medicamento: treatment.medicamento),
+            Row(
+              children: [
+                Flexible(
+                  child: Column(
+                    children: [
+                      StartDateWidget(
+                        startDate: treatment.startDate,
+                      ),
+                      EndDateWidget(endDate: treatment.endDate),
+                      DoseWidget(
+                        frequency: treatment.frequencyHours,
+                      ),
+                    ],
                   ),
-                  Flexible(
-                    child: Column(
-                      children: [
-                        MedicationPhotoWidget(
-                          fotos: treatment.medicamento!.fotos,
-                        ),
-                        MedicationDetailButton(
-                          medication: treatment.medicamento,
-                        ),
-                      ],
-                    ),
+                ),
+                Flexible(
+                  child: Column(
+                    children: [
+                      MedicationPhotoWidget(
+                        fotos: treatment.medicamento!.fotos,
+                      ),
+                      MedicationDetailButton(
+                        medication: treatment.medicamento,
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              DosesListView(
-                doses: treatment.doses,
-                treatmentId: treatment.id,
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+            const Spacer(),
+            DosesListView(
+              doses: treatment.doses,
+              treatmentId: treatment.id,
+            ),
+          ],
         ),
       ),
     );

@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
       ),
       body: const TreatmentSchedulePage(),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Theme.of(context).hoverColor,
+        backgroundColor: Theme.of(context).secondaryHeaderColor,
         tooltip: l10n.searchMedicationFieldLabel,
         onPressed: () => Navigator.push<void>(
           context,

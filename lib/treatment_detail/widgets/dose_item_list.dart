@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:medical_reminder/l10n/l10n.dart';
 import 'package:medical_reminder/treatment_schedule/bloc/treatment_schedule_bloc.dart';
 import 'package:treatment_repository/treatment_repository.dart';
 
@@ -22,7 +23,7 @@ class DoseItemList extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return BlocBuilder<TreatmentScheduleBloc, TreatmentScheduleState>(
       builder: (context, state) {
-        if(state.treatments.isEmpty ) {
+        if (state.treatments.isEmpty) {
           return const SizedBox.shrink();
         }
         final currentDose = state.treatments
@@ -43,9 +44,9 @@ class DoseItemList extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _ScheduledDateText(dose: dose),
+                  _ScheduledDateText(dose: currentDose),
                   const Spacer(),
-                  _IntakeDateText(dose: dose),
+                  _IntakeDateText(dose: currentDose),
                 ],
               ),
             ),
@@ -75,11 +76,12 @@ class _ScheduledDateText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Fecha programada',
+          l10n.scheduledDoseFieldLabel,
           style: Theme.of(context).textTheme.caption,
         ),
         Text(
@@ -108,11 +110,12 @@ class _IntakeDateText extends StatelessWidget {
     if (dose.intakeDateTime == null) {
       return const SizedBox.shrink();
     }
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Fecha de toma',
+        l10n.intakeDateTimeFieldLabel,
           style: Theme.of(context).textTheme.caption,
         ),
         Text(
