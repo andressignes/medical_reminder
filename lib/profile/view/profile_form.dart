@@ -33,18 +33,18 @@ class ProfileForm extends StatelessWidget {
               const ProfileSaveButton(),
               SizedBox(height: size.height * 0.01),
               const LogoutButton(),
-              ElevatedButton(
-                onPressed: () => NotificationApi.showScheduledNotification(
-                  body: 'hello this is a test notification from flutter. '
-                      'Ex et ea nisi in enim excepteur '
-                      'deserunt elit labore laborum nisi anim.',
-                  title: 'Notification Test',
-                  payload: 'test',
-                  scheduledDateTime:
-                      DateTime.now().add(const Duration(seconds: 5)),
-                ),
-                child: const Text('test'),
-              ),
+              // ElevatedButton(
+              //   onPressed: () => NotificationApi.showScheduledNotification(
+              //     body: 'hello this is a test notification from flutter. '
+              //         'Ex et ea nisi in enim excepteur '
+              //         'deserunt elit labore laborum nisi anim.',
+              //     title: 'Notification Test',
+              //     payload: 'test',
+              //     scheduledDateTime:
+              //         DateTime.now().add(const Duration(seconds: 5)),
+              //   ),
+              //   child: const Text('test'),
+              // ),
             ],
           ),
         ),
