@@ -31,9 +31,7 @@ class AuthenticationRepositoryMock extends Mock
 }
 
 void main() {
-  final _authRepository = AuthenticationRepositoryMock(
-
-  );
+  final _authRepository = AuthenticationRepositoryMock();
   group('App', () {
     testWidgets('renders Home Page', (tester) async {
       await tester.pumpWidget(
