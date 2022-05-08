@@ -15,8 +15,10 @@ class ConfirmedPasswordFormInput
   const ConfirmedPasswordFormInput.pure({this.password = ''}) : super.pure('');
 
   /// {@macro confirmed_password}
-  const ConfirmedPasswordFormInput.dirty({required this.password, String value = ''})
-      : super.dirty(value);
+  const ConfirmedPasswordFormInput.dirty({
+    required this.password,
+    String value = '',
+  }) : super.dirty(value);
 
   /// The original password.
   final String password;

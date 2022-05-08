@@ -9,7 +9,8 @@ enum BirthDateValidationError {
 /// {@template BirthDate}
 /// Form input for an Birth Date input.
 /// {@endtemplate}
-class BirthDateFormInput extends FormzInput<DateTime?, BirthDateValidationError> {
+class BirthDateFormInput
+    extends FormzInput<DateTime?, BirthDateValidationError> {
   /// {@macro BirthDate}
   const BirthDateFormInput.pure() : super.pure(null);
 
