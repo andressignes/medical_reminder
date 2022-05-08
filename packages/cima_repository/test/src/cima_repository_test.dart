@@ -26,7 +26,7 @@ void main() {
       const nRegistro = '51347';
       final medicamentoJson =
           File('test/data/medicamento_cn_712729.json').readAsStringSync();
-      setUpAll(() {
+      setUp(() {
         when(() => apiClient.getMedicationByCN(cn))
             .thenAnswer((_) async => Response(medicamentoJson, 200));
         when(() => apiClient.getMedicationByNRegistro(nRegistro))
