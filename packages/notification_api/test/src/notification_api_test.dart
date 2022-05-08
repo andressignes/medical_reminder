@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors
-import 'package:mocktail/mocktail.dart';
 import 'package:notification_api/notification_api.dart';
 import 'package:test/test.dart';
 
