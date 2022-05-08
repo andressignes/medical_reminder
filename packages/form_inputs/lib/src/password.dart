@@ -17,7 +17,7 @@ class PasswordFormInput extends FormzInput<String, PasswordValidationError> {
   const PasswordFormInput.dirty([String value = '']) : super.dirty(value);
 
   static final _passwordRegExp =
-      RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$');
+      RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?\d).{8,}$');
 
   @override
   PasswordValidationError? validator(String? value) {
