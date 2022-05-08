@@ -30,7 +30,7 @@ class MedicationPhotoWidget extends StatelessWidget {
       child: Hero(
         tag: urlPhoto,
         child: Padding(
-          padding:  EdgeInsets.symmetric(horizontal: size.width * 0.01),
+          padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Image.network(

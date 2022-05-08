@@ -31,9 +31,9 @@ class NextDoseTextTime extends StatelessWidget {
           dose!.scheduledDateTime,
         ),
         style: Theme.of(context).textTheme.headline4!.copyWith(
-          fontWeight: FontWeight.bold,
-          color: Theme.of(context).colorScheme.primary,
-        ),
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.primary,
+            ),
       ),
       subtitle: Text(l10n.nextDoseFieldLabel),
     );

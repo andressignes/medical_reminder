@@ -115,7 +115,7 @@ class _IntakeDateText extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-        l10n.intakeDateTimeFieldLabel,
+          l10n.intakeDateTimeFieldLabel,
           style: Theme.of(context).textTheme.caption,
         ),
         Text(
