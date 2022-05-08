@@ -116,16 +116,18 @@ void main() {
       test('find by name', () async {
         late final String medicamentoRAW;
         late final Map<String, dynamic> medicamentoJson;
-        late final List<Medicamento> listMedicamentos;
+        final listMedicamentos = <Medicamento>[];
         medicamentoRAW =
             await File('test/data/medicamento.json').readAsString();
         medicamentoJson = jsonDecode(medicamentoRAW) as Map<String, dynamic>;
-        listMedicamentos =
-            (medicamentoJson['resultados'] as List<Map<String, dynamic>>)
-                .map(
-                  Medicamento.fromJson,
-                )
-                .toList();
+        final cimaPaginado = CimaPaginado.fromJson(medicamentoJson);
+        if (cimaPaginado.resultados != null) {
+          listMedicamentos.addAll(
+            cimaPaginado.resultados!.map<Medicamento>(
+              Medicamento.fromJson,
+            ),
+          );
+        }
 
         when(() => apiClient.getMedications(params: params))
             .thenAnswer((_) async => Response(medicamentoRAW, 200));
@@ -148,12 +150,9 @@ void main() {
         final problemasSuministroRaw =
             await File('test/data/problemas_suministro.json').readAsString();
         final problemasSuministroJson =
-            jsonDecode(problemasSuministroRaw) as List<Map<String, dynamic>>;
-        final cimaPaginado = CimaPaginado.fromJson(
-          problemasSuministroJson as Map<String, dynamic>,
-        );
-        final resultados =
-            cimaPaginado.resultados!;
+            jsonDecode(problemasSuministroRaw) as Map<String, dynamic>;
+        final cimaPaginado = CimaPaginado.fromJson(problemasSuministroJson);
+        final resultados = cimaPaginado.resultados!;
         final problemasSuministro =
             resultados.map(ProblemaSuministro.fromJson).toList();
 
@@ -173,8 +172,7 @@ void main() {
         final problemasSuministroJson =
             jsonDecode(problemasSuministroRaw) as Map<String, dynamic>;
         final cimaPaginado = CimaPaginado.fromJson(problemasSuministroJson);
-        final resultados =
-            cimaPaginado.resultados!;
+        final resultados = cimaPaginado.resultados!;
         final problemasSuministro =
             resultados.map(ProblemaSuministro.fromJson).toList();
         when(() => apiClient.getProblemasSuministro(params: params))
