@@ -1,6 +1,6 @@
 # Medicalreminder
 
-![coverage][coverage_badge]
+[![codecov](https://codecov.io/gh/asignes86/medical_reminder/branch/master/graph/badge.svg?token=TK1LNA4MVN)](https://codecov.io/gh/asignes86/medical_reminder)
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 [![License: MIT][license_badge]][license_link]
 
