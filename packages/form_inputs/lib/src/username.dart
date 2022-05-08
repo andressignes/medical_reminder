@@ -9,12 +9,12 @@ enum UsernameValidationError {
 /// {@template username}
 /// Form input for an username input.
 /// {@endtemplate}
-class Username extends FormzInput<String, UsernameValidationError> {
+class UsernameFormInput extends FormzInput<String, UsernameValidationError> {
   /// {@macro username}
-  const Username.pure() : super.pure('');
+  const UsernameFormInput.pure() : super.pure('');
 
   /// {@macro username}
-  const Username.dirty([String value = '']) : super.dirty(value);
+  const UsernameFormInput.dirty([String value = '']) : super.dirty(value);
 
   @override
   UsernameValidationError? validator(String value) {

@@ -14,7 +14,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   final AuthenticationRepository _authenticationRepository;
 
   void emailChanged(String email) {
-    final emailInput = Email.dirty(email);
+    final emailInput = EmailFormInput.dirty(email);
     emit(
       state.copyWith(
         email: emailInput,
@@ -28,7 +28,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   }
 
   void passwordChanged(String password) {
-    final passwordInput = Password.dirty(password);
+    final passwordInput = PasswordFormInput.dirty(password);
     emit(
       state.copyWith(
         password: passwordInput,
@@ -42,7 +42,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   }
 
   void confirmedPasswordChanged(String confirmedPassword) {
-    final confirmedPasswordInput = ConfirmedPassword.dirty(
+    final confirmedPasswordInput = ConfirmedPasswordFormInput.dirty(
       value: confirmedPassword,
       password: state.password.value,
     );

@@ -51,7 +51,7 @@ class BirthDateInput extends StatelessWidget {
     );
     if (selectedDate != null) {
       log('changed');
-      final birthDate = BirthDate.dirty(selectedDate);
+      final birthDate = BirthDateFormInput.dirty(selectedDate);
       cubit.birthDateChanged(birthDate);
       textEditingController.text =
           birthDate.value != null ? dateFormat.format(birthDate.value!) : '';

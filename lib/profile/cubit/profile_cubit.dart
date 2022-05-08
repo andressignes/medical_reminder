@@ -15,7 +15,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   final AuthenticationRepository _authenticationRepository;
 
   void nameChanged(String name) {
-    final username = Username.dirty(name);
+    final username = UsernameFormInput.dirty(name);
     emit(
       state.copyWith(
         name: username,
@@ -24,7 +24,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     );
   }
 
-  void birthDateChanged(BirthDate birthDate) {
+  void birthDateChanged(BirthDateFormInput birthDate) {
     emit(
       state.copyWith(
         birthDate: birthDate,

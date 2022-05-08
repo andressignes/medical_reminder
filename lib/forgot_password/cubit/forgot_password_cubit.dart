@@ -14,7 +14,7 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
   final AuthenticationRepository authenticationRepository;
 
   void emailChanged(String email) {
-    final emailInput = Email.dirty(email);
+    final emailInput = EmailFormInput.dirty(email);
     emit(
       state.copyWith(
         email: emailInput,
