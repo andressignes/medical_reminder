@@ -8,5 +8,5 @@ jobs:
     with:
       coverage_excludes: "*.g.dart"
       flutter_channel: stable
-      flutter_version: 2.16.0
+      flutter_version: 2.10.0
       test_recursion: true
