@@ -3,11 +3,13 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:intl/intl.dart';
 import 'package:notification_api/notification_api.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:treatment_repository/treatment_repository.dart';
 
 part 'treatment_schedule_event.dart';
+
 part 'treatment_schedule_state.dart';
 
 class TreatmentScheduleBloc
@@ -32,25 +34,16 @@ class TreatmentScheduleBloc
     log('TreatmentScheduleBloc._onSubscriptionRequested');
     emit(state.copyWith(status: TreatmentScheduleStatus.loading));
     await NotificationApi.cancelAllNotifications();
-
+    final dateFormat = DateFormat('yyyy-MM-dd HH:mm');
     final treatments = await _treatmentRepository.getTreatments2(userId);
     for (final t in treatments) {
       for (final d in t.doses) {
         if (d.scheduledDateTime.isAfter(DateTime.now())) {
           await NotificationApi.showScheduledNotification(
             // id: int.parse(d.id!),
-            title: 'Dose of ${d.scheduledDateTime.toIso8601String()}',
-            body: '${t.medicamento?.nombre ?? 'Medicamento'} '
-                'de las ${d.scheduledDateTime.toIso8601String()}',
-            scheduledDateTime: tz.TZDateTime(
-              tz.local,
-              d.scheduledDateTime.year,
-              d.scheduledDateTime.month,
-              d.scheduledDateTime.day,
-              d.scheduledDateTime.hour,
-              d.scheduledDateTime.minute,
-              d.scheduledDateTime.second,
-            ),
+            title: t.medicamento?.nombre ?? 'Medicamento',
+            body: 'Dosis de las ${dateFormat.format(d.scheduledDateTime)}',
+            scheduledDateTime: d.scheduledDateTime,
           );
         }
       }

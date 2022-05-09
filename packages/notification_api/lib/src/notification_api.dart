@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
+import 'package:intl/intl.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
@@ -55,20 +56,16 @@ class NotificationApi {
     String? payload,
     required DateTime scheduledDateTime,
   }) async {
-    log('Notification: $scheduledDateTime - $body');
+    final dateFormat = DateFormat('yyyy-MM-dd HH:mm:ss.SSSSSS');
+    final tzDateTime = tz.TZDateTime.from(scheduledDateTime, tz.local);
+    log('Notification: ${dateFormat.format(scheduledDateTime)} # ${dateFormat.format(tzDateTime)} - $body');
+
+    try {
     await _notifications.zonedSchedule(
       id,
       title,
       body,
-      tz.TZDateTime(
-        tz.local,
-        scheduledDateTime.year,
-        scheduledDateTime.month,
-        scheduledDateTime.day,
-        scheduledDateTime.hour,
-        scheduledDateTime.minute,
-        scheduledDateTime.second,
-      ),
+      tzDateTime,
       await _getNotificationDetails(),
       payload: payload,
       androidAllowWhileIdle: true,
@@ -76,6 +73,9 @@ class NotificationApi {
           UILocalNotificationDateInterpretation.absoluteTime,
       matchDateTimeComponents: DateTimeComponents.dateAndTime,
     );
+    } catch (e) {
+      log('Error: $e');
+    }
   }
 
   static Future<NotificationDetails> _getNotificationDetails() async {
