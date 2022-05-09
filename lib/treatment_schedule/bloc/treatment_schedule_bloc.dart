@@ -5,7 +5,6 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
 import 'package:notification_api/notification_api.dart';
-import 'package:timezone/timezone.dart' as tz;
 import 'package:treatment_repository/treatment_repository.dart';
 
 part 'treatment_schedule_event.dart';

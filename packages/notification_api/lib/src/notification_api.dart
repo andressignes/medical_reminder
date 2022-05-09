@@ -58,21 +58,26 @@ class NotificationApi {
   }) async {
     final dateFormat = DateFormat('yyyy-MM-dd HH:mm:ss.SSSSSS');
     final tzDateTime = tz.TZDateTime.from(scheduledDateTime, tz.local);
-    log('Notification: ${dateFormat.format(scheduledDateTime)} # ${dateFormat.format(tzDateTime)} - $body');
+    log(
+      'Notification: '
+      '${dateFormat.format(scheduledDateTime)} # '
+      '${dateFormat.format(tzDateTime)} - '
+      '$body',
+    );
 
     try {
-    await _notifications.zonedSchedule(
-      id,
-      title,
-      body,
-      tzDateTime,
-      await _getNotificationDetails(),
-      payload: payload,
-      androidAllowWhileIdle: true,
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
-      matchDateTimeComponents: DateTimeComponents.dateAndTime,
-    );
+      await _notifications.zonedSchedule(
+        id,
+        title,
+        body,
+        tzDateTime,
+        await _getNotificationDetails(),
+        payload: payload,
+        androidAllowWhileIdle: true,
+        uiLocalNotificationDateInterpretation:
+            UILocalNotificationDateInterpretation.absoluteTime,
+        matchDateTimeComponents: DateTimeComponents.dateAndTime,
+      );
     } catch (e) {
       log('Error: $e');
     }
