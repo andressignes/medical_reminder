@@ -157,5 +157,29 @@
   "intakeDateTimeFieldLabel": "Momento de la toma",
   "@intakeDateTimeFieldLabel": {
     "description": "Etiqueta del campo de fecha y hora de ingesta"
+  },
+  "licence_text_title": "Licencia",
+  "@licence_text_title": {
+    "description": "Título de la licencia"
+  },
+  "licence_text_description": "Esta obra está sujeta a una licencia de Reconocimiento-No Comercial-Sin Obra Derivada 3.0 España de Creative Commons",
+  "@licence_text_description": {
+    "description": "Descripción de la licencia"
+  },
+  "licence_medication_title": "Datos de medicamentos",
+  "@licence_medication_title": {
+    "description": "Título de los datos de medicamentos"
+  },
+  "licence_medication_description": "Los datos de medicamentos se obtienen de la API de OpenFDA",
+  "@licence_medication_description": {
+    "description": "Descripción de los datos de medicamentos"
+  },
+  "licence_user_data_title": "Datos de usuario",
+  "@licence_user_data_title": {
+    "description": "Título de los datos de usuario"
+  },
+  "licence_user_data_description": "Los datos de usuario se almacenan en Firebase",
+  "@licence_user_data_description": {
+    "description": "Descripción de los datos de usuario"
   }
 }

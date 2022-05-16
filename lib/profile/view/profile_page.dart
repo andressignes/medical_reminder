@@ -32,26 +32,23 @@ class ProfilePage extends StatelessWidget {
                 height: 64,
               ),
               children: [
-                const ListTile(
-                  leading: Icon(Icons.info_outline),
-                  title: Text('Licencia'),
-                  subtitle: Text(
-                      'Esta obra está sujeta a una licencia de Reconocimiento-NoComercial-SinObraDerivada 3.0 España de Creative Commons'),
+                ListTile(
+                  leading: const Icon(Icons.info_outline),
+                  title: Text(l10n.licence_text_title),
+                  subtitle: Text(l10n.licence_text_description),
                 ),
                 InkWell(
                   onTap: () => launch('https://cima.aemps.es/'),
-                  child: const ListTile(
-                    leading: Icon(Icons.info_outline),
-                    title: Text('Datos de medicamentos'),
-                    subtitle: Text(
-                        'Obtenidos de la API de CIMA (Centro de Información de Medicamentos de la AEMPS)'),
+                  child: ListTile(
+                    leading: const Icon(Icons.info_outline),
+                    title: Text(l10n.licence_medication_title),
+                    subtitle: Text(l10n.licence_medication_description),
                   ),
                 ),
-                const ListTile(
-                  leading: Icon(Icons.info_outline),
-                  title: Text('Informacion de tratamientos'),
-                  subtitle: Text(
-                      'Toda la informacion de los usuarios y tratamientos se almacena en Firebase.'),
+                ListTile(
+                  leading: const Icon(Icons.info_outline),
+                  title: Text(l10n.licence_user_data_title),
+                  subtitle: Text(l10n.licence_user_data_description),
                 )
               ],
             ),
