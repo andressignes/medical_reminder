@@ -1,3 +1,4 @@
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -13,6 +14,20 @@ enum Gender {
 
   /// Enum value genderless.
   genderless,
+}
+
+extension GenderLang on Gender {
+  String get toSpanish {
+    switch(this) {
+      case Gender.male:
+        return 'Hombre';
+      case Gender.female:
+        return 'Mujer';
+      case Gender.genderless:
+        return 'Sin Género';
+    }
+
+  }
 }
 
 /// {@template user}

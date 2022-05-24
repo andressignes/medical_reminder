@@ -16,7 +16,7 @@ class GenderInput extends StatelessWidget {
             (e) {
               return DropdownMenuItem(
                 value: e,
-                child: Text(e.name),
+                child: Text(e.toSpanish),
               );
             },
           ).toList(),
