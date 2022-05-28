@@ -1,6 +1,6 @@
 # Medicalreminder
 
-[![codecov](https://codecov.io/gh/asignes86/medical_reminder/branch/master/graph/badge.svg?token=TK1LNA4MVN)](https://codecov.io/gh/asignes86/medical_reminder)
+[![codecov][coverage_badge]][coverage_link]
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 [![License: MIT][license_badge]][license_link]
 
@@ -31,7 +31,7 @@ $ flutter run --flavor staging --target lib/main_staging.dart
 $ flutter run --flavor production --target lib/main_production.dart
 ```
 
-_\*Medicalreminder works on iOS, Android, Web, and Windows._
+_\*Medicalreminder works on iOS, Android._
 
 ---
 
@@ -154,11 +154,12 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info
 }
 ```
 
-[coverage_badge]: coverage_badge.svg
+[coverage_badge]: https://codecov.io/gh/asignes86/medical_reminder/branch/master/graph/badge.svg?token=TK1LNA4MVN
+[coverage_link]: https://codecov.io/gh/asignes86/medical_reminder
 [flutter_localizations_link]: https://api.flutter.dev/flutter/flutter_localizations/flutter_localizations-library.html
 [internationalization_link]: https://flutter.dev/docs/development/accessibility-and-localization/internationalization
-[license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
-[license_link]: https://opensource.org/licenses/MIT
+[license_badge]: https://img.shields.io/badge/license-CC%20BY--NC--SA%203.0-lightgrey.svg
+[license_link]: https://creativecommons.org/licenses/by-nc-sa/3.0/
 [very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
 [very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
 [very_good_cli_link]: https://github.com/VeryGoodOpenSource/very_good_cli
