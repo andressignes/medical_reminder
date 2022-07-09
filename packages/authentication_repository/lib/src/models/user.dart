@@ -1,4 +1,3 @@
-import 'package:authentication_repository/authentication_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -18,7 +17,7 @@ enum Gender {
 
 extension GenderLang on Gender {
   String get toSpanish {
-    switch(this) {
+    switch (this) {
       case Gender.male:
         return 'Hombre';
       case Gender.female:
@@ -26,7 +25,6 @@ extension GenderLang on Gender {
       case Gender.genderless:
         return 'Sin Género';
     }
-
   }
 }
 
@@ -35,7 +33,7 @@ extension GenderLang on Gender {
 ///
 /// [User.empty] represents an unauthenticated user.
 /// {@endtemplate}
-@JsonSerializable()
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class User extends Equatable {
   /// {@macro user}
   const User({

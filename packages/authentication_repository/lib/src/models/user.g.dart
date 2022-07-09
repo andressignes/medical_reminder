@@ -16,13 +16,23 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       gender: $enumDecodeNullable(_$GenderEnumMap, json['gender']),
     );
 
-Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
-      'id': instance.id,
-      'email': instance.email,
-      'name': instance.name,
-      'birthDate': instance.birthDate?.toIso8601String(),
-      'gender': _$GenderEnumMap[instance.gender],
-    };
+Map<String, dynamic> _$UserToJson(User instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+    'email': instance.email,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('name', instance.name);
+  writeNotNull('birthDate', instance.birthDate?.toIso8601String());
+  writeNotNull('gender', _$GenderEnumMap[instance.gender]);
+  return val;
+}
 
 const _$GenderEnumMap = {
   Gender.male: 'male',

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medical_reminder/profile/cubit/profile_cubit.dart';
 import 'package:medical_reminder/profile/widgets/widgets.dart';
-import 'package:notification_api/notification_api.dart';
 
 class ProfileForm extends StatelessWidget {
   const ProfileForm({Key? key}) : super(key: key);
